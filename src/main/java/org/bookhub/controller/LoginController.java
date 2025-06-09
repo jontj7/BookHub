@@ -10,6 +10,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import org.bookhub.models.Usuario;
+import org.bookhub.models.UsuarioSesion;
+import org.bookhub.service.LoginService;
+
 import java.io.IOException;
 
 public class LoginController {
@@ -23,35 +27,40 @@ public class LoginController {
     @FXML
     private Button btnLogin;
 
-    @FXML
-    private void initialize() {
-
-        // Aquí puedes inicializar cosas si quieres
-    }
+    private final LoginService loginService = new LoginService();
 
     @FXML
     private void handleLogin() {
-        String username = txtUsername.getText();
-        String password = txtPassword.getText();
+        String usuario = txtUsername.getText();
+        String contrasena = txtPassword.getText();
 
-        if ("admin".equals(username) && "1234".equals(password)) {
-            try {
-                // Carga la nueva vista
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/bookhub/view/dashboard.fxml"));
-                Parent root = loader.load();
+        Usuario usuarioObj = loginService.autenticar(usuario, contrasena);
 
-                // Cambia la escena
-                Stage stage = (Stage) btnLogin.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Dashboard");
-                stage.show();
+        if (usuarioObj != null) {
+            UsuarioSesion.idUsuario = usuarioObj.getId();
+            UsuarioSesion.nombres = usuarioObj.getNombres();
+            UsuarioSesion.apellidos = usuarioObj.getApellidos();
+            UsuarioSesion.idRol = usuarioObj.getIdRol();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert("Error", "No se pudo cargar la vista del dashboard", Alert.AlertType.ERROR);
-            }
+            cargarDashboard();
         } else {
-            showAlert("Error de login", "Usuario o contraseña incorrectos", Alert.AlertType.ERROR);
+            showAlert("Login incorrecto", "Usuario o contraseña no válidos", Alert.AlertType.ERROR);
+        }
+    }
+
+    private void cargarDashboard() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/bookhub/view/dashboard.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnLogin.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Dashboard");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "No se pudo cargar la vista del dashboard", Alert.AlertType.ERROR);
         }
     }
 
