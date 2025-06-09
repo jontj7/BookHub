@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.bookhub.controller.DashboardController">
+
+    <!-- Encabezado -->
+    <top>
+        <HBox spacing="10" style="-fx-background-color: #2C3E50;">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="BookHub Dashboard" style="-fx-text-fill: white; -fx-font-size: 18px;"/>
+        </HBox>
+    </top>
+
+    <!-- Menú lateral -->
+    <left>
+        <VBox spacing="10" style="-fx-background-color: #ecf0f1;">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="Inicio" prefWidth="120"/>
+            <Button text="Libros" prefWidth="120"/>
+            <Button text="Usuarios" prefWidth="120"/>
+            <Button text="Cerrar Sesión" prefWidth="120" onAction="#handleLogout"/>
+        </VBox>
+    </left>
+
+    <!-- Contenido principal -->
+    <center>
+        <VBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="¡Bienvenido al sistema BookHub!" style="-fx-font-size: 16px;"/>
+        </VBox>
+    </center>
+
+</BorderPane>
