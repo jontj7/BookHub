@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.bookhub.controller.home.HomeController"
+            prefWidth="1000.0" prefHeight="600.0"
+            style="-fx-background-color: #0f172a;">
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #1e293b;" prefWidth="200">
+            <Label text="📘 Bookhub" textFill="white" style="-fx-font-size: 24;" />
+            <Label text="Menú de gestión" textFill="#9ca3af" />
+
+            <Button text="📚 Libros" onAction="#mostrarLibros"
+                    style="-fx-background-color: transparent; -fx-text-fill: white;" />
+            <Button text="🔁 Préstamos" onAction="#mostrarPrestamos"
+                    style="-fx-background-color: transparent; -fx-text-fill: white;" />
+            <Button text="👤 Autores" onAction="#mostrarAutores"
+                    style="-fx-background-color: transparent; -fx-text-fill: white;" />
+            <Button text="👥 Usuarios" onAction="#mostrarUsuarios"
+                    style="-fx-background-color: transparent; -fx-text-fill: white;" />
+
+            <Separator />
+            <Button text="🚪 Cerrar sesión" onAction="#logout"
+                    style="-fx-background-color: red; -fx-text-fill: white;" />
+        </VBox>
+    </left>
+
+    <!-- CONTENIDO DINÁMICO -->
+    <center>
+        <StackPane fx:id="contenidoVista">
+            <VBox spacing="20" style="-fx-padding: 20;">
+                <HBox spacing="20">
+                    <VBox style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 8;" alignment="CENTER">
+                        <Label text="📚 Total Libros" textFill="white" />
+                        <Label fx:id="labelTotalLibros" text="-" style="-fx-font-size: 22; -fx-text-fill: #38bdf8;" />
+                    </VBox>
+
+                    <VBox style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 8;" alignment="CENTER">
+                        <Label text="🔁 Préstamos Pendientes" textFill="white" />
+                        <Label fx:id="labelPrestamosPendientes" text="-" style="-fx-font-size: 22; -fx-text-fill: #f43f5e;" />
+                    </VBox>
+
+                    <VBox style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 8;" alignment="CENTER">
+                        <Label text="✅ Préstamos Devueltos" textFill="white" />
+                        <Label fx:id="labelPrestamosDevueltos" text="-" style="-fx-font-size: 22; -fx-text-fill: #22c55e;" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="30">
+                    <PieChart fx:id="pieChartCategoria" prefWidth="400" prefHeight="300" />
+                    <BarChart fx:id="barChartTopLibros" prefWidth="500" prefHeight="300">
+                        <xAxis>
+                            <CategoryAxis label="Libros" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Préstamos" />
+                        </yAxis>
+                    </BarChart>
+                </HBox>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>

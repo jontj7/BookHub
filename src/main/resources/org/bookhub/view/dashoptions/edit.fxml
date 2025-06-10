@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane fx:id="formAgregarLibro" prefHeight="427.0" prefWidth="426.0" style="-fx-background-color: #1e1e1e; -fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bookhub.controller.libro.EditLibroController">
+    <children>
+        <VBox layoutX="20.0" layoutY="20.0" prefHeight="353.0" prefWidth="360.0" spacing="15">
+            <children>
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Editar Libro" textFill="white" />
+                <Label style="-fx-font-size: 14px;" text="Modifica la información del libro." textFill="#cccccc" />
+                <VBox spacing="5">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Nombre" textFill="white" />
+                        <TextField fx:id="txtNombre" promptText="Ingresa el nombre del libro" style="-fx-background-color: Transparent; -fx-border-color: gray; -fx-border-radius: 6px;" />
+                    </children>
+                </VBox>
+                <VBox spacing="5">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Categoría" textFill="white" />
+                        <TextField fx:id="txtCategoria" promptText="Ingresa la categoría del libro" style="-fx-background-color: transparent; -fx-background-radius: 4px; -fx-border-color: gray;" />
+                    </children>
+                </VBox>
+                <VBox spacing="5">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Autor" textFill="white" />
+                        <TextField fx:id="txtAutor" promptText="Ingresa el autor del libro" style="-fx-background-color: transparent; -fx-background-radius: 4px; -fx-border-color: gray;" />
+                    </children>
+                </VBox>
+                <VBox spacing="5">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Cantidad de copias" textFill="white" />
+                        <TextField fx:id="txtStock" promptText="Ingresa la cantidad de copias" style="-fx-background-color: transparent; -fx-border-radius: 4px; -fx-border-color: gray;" />
+                    </children>
+                </VBox>
+                <HBox alignment="CENTER_RIGHT" spacing="15">
+                    <children>
+                        <Button fx:id="btnCancelar" onAction="#cancelar" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: #FF005D; -fx-text-fill: white; -fx-background-radius: 6px;" text="Cancelar" />
+                        <Button fx:id="btnguardar" onAction="#guardar" style="-fx-background-color: #0022FF; -fx-text-fill: white; -fx-background-radius: 6px;" text="Guardar cambios" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</Pane>

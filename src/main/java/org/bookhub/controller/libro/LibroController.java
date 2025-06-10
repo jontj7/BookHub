@@ -1,4 +1,4 @@
-package org.bookhub.controller;
+package org.bookhub.controller.libro;
 
 import org.bookhub.models.Libro;
 import org.bookhub.service.LibroService;

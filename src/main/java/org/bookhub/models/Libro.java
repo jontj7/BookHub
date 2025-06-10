@@ -1,29 +1,54 @@
 package org.bookhub.models;
 
+import javafx.beans.property.*;
+
 public class Libro {
-    private int idLibro;
-    private String nombre;
-    private int idAutor;
-    private int idCategoria;
-    private int stock;
-    private String imagen;
+    private final IntegerProperty idLibro = new SimpleIntegerProperty();
+    private final StringProperty nombre = new SimpleStringProperty();
+    private final IntegerProperty idAutor = new SimpleIntegerProperty();
+    private final StringProperty nombreAutor = new SimpleStringProperty();
+    private final IntegerProperty idCategoria = new SimpleIntegerProperty();
+    private final StringProperty nombreCategoria = new SimpleStringProperty();
+    private final IntegerProperty stock = new SimpleIntegerProperty();
+    private final StringProperty imagen = new SimpleStringProperty();
 
-    // Getters y Setters
-    public int getIdLibro() { return idLibro; }
-    public void setIdLibro(int idLibro) { this.idLibro = idLibro; }
+    // ID Libro
+    public int getIdLibro() { return idLibro.get(); }
+    public void setIdLibro(int value) { idLibro.set(value); }
+    public IntegerProperty idLibroProperty() { return idLibro; }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    // Nombre
+    public String getNombre() { return nombre.get(); }
+    public void setNombre(String value) { nombre.set(value); }
+    public StringProperty nombreProperty() { return nombre; }
 
-    public int getIdAutor() { return idAutor; }
-    public void setIdAutor(int idAutor) { this.idAutor = idAutor; }
+    // ID Autor
+    public int getIdAutor() { return idAutor.get(); }
+    public void setIdAutor(int value) { idAutor.set(value); }
+    public IntegerProperty idAutorProperty() { return idAutor; }
 
-    public int getIdCategoria() { return idCategoria; }
-    public void setIdCategoria(int idCategoria) { this.idCategoria = idCategoria; }
+    // Nombre Autor
+    public String getNombreAutor() { return nombreAutor.get(); }
+    public void setNombreAutor(String value) { nombreAutor.set(value); }
+    public StringProperty nombreAutorProperty() { return nombreAutor; }
 
-    public int getStock() { return stock; }
-    public void setStock(int stock) { this.stock = stock; }
+    // ID Categoria
+    public int getIdCategoria() { return idCategoria.get(); }
+    public void setIdCategoria(int value) { idCategoria.set(value); }
+    public IntegerProperty idCategoriaProperty() { return idCategoria; }
 
-    public String getImagen() { return imagen; }
-    public void setImagen(String imagen) { this.imagen = imagen; }
+    // Nombre Categoria
+    public String getNombreCategoria() { return nombreCategoria.get(); }
+    public void setNombreCategoria(String value) { nombreCategoria.set(value); }
+    public StringProperty nombreCategoriaProperty() { return nombreCategoria; }
+
+    // Stock
+    public int getStock() { return stock.get(); }
+    public void setStock(int value) { stock.set(value); }
+    public IntegerProperty stockProperty() { return stock; }
+
+    // Imagen
+    public String getImagen() { return imagen.get(); }
+    public void setImagen(String value) { imagen.set(value); }
+    public StringProperty imagenProperty() { return imagen; }
 }

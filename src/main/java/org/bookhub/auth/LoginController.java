@@ -1,4 +1,4 @@
-package org.bookhub.controller;
+package org.bookhub.auth;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,7 +50,7 @@ public class LoginController {
 
     private void cargarDashboard() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/bookhub/view/dashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/bookhub/view/homeview/home.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) btnLogin.getScene().getWindow();
