@@ -15,7 +15,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="863.0"
       xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.bookhub.controller.LoginController">
+      fx:controller="org.bookhub.auth.LoginController">
    <children>
       <Pane prefHeight="533.0" prefWidth="435.0" style="-fx-background-color: black;">
          <children>
