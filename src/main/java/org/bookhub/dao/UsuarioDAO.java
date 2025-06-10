@@ -6,6 +6,7 @@ import org.bookhub.utils.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UsuarioDAO {
 
@@ -16,7 +17,7 @@ public class UsuarioDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, username);
-            stmt.setString(2, password); // Aquí puedes aplicar hash si es necesario
+            stmt.setString(2, password);
 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -32,5 +33,43 @@ public class UsuarioDAO {
         }
 
         return null;
+    }
+
+    public boolean guardar(Usuario usuario) {
+        String sql = "INSERT INTO Usuarios (Nombres, Apellidos, Contraseña, IdRol) VALUES (?, ?, ?, ?)";
+
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, usuario.getNombres());
+            stmt.setString(2, usuario.getApellidos());
+            stmt.setString(3, usuario.getContrasena());
+            stmt.setInt(4, usuario.getIdRol());
+
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean existeUsuario(String nombres, String apellidos) {
+        String sql = "SELECT COUNT(*) FROM Usuarios WHERE Nombres = ? AND Apellidos = ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, nombres);
+            stmt.setString(2, apellidos);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }

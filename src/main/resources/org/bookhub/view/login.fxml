@@ -38,7 +38,9 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Button>
-            <Hyperlink layoutX="262.0" layoutY="371.0" text="Crear cuenta" />
+            <Hyperlink fx:id="linkCrearCuenta" layoutX="262.0" layoutY="371.0"
+                       text="Crear cuenta" onAction="#abrirVistaRegistro" />
+
             <Label layoutX="108.0" layoutY="374.0" text="¿Aun no tienes una cuenta?" textFill="WHITE" />
             <ImageView layoutX="78.0" layoutY="195.0">
                <image>

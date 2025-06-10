@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="863.0"
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.bookhub.auth.RegistrarseController">
+
+   <children>
+      <Pane layoutY="-3.0" prefHeight="533.0" prefWidth="435.0" style="-fx-background-color: blue;" />
+
+      <Pane layoutX="435.0" layoutY="-7.0" prefHeight="533.0" prefWidth="435.0" style="-fx-background-color: black;">
+         <children>
+            <Label layoutX="29.0" layoutY="112.0" prefHeight="40.0" prefWidth="327.0"
+                   text="Registrar nuevo usuario" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="28.0" />
+               </font>
+            </Label>
+
+            <Label layoutX="74.0" layoutY="167.0" text="Nombres" textFill="WHITE" />
+            <Label layoutX="69.0" layoutY="228.0" text="Apellidos" textFill="WHITE" />
+
+            <TextField fx:id="txtUsername1" layoutX="101.0" layoutY="191.0" prefHeight="27.0" prefWidth="245.0"
+                       promptText="Ingresa tu nombre"
+                       style="-fx-background-color: transparent; -fx-border-color: #8e8e8e; -fx-border-radius: 4px;" />
+
+            <TextField fx:id="txtApellidos" layoutX="102.0" layoutY="252.0" prefHeight="27.0" prefWidth="245.0"
+                       promptText="Ingresa tus apellidos"
+                       style="-fx-background-color: transparent; -fx-border-color: #8e8e8e; -fx-border-radius: 4px;" />
+
+            <Label layoutX="74.0" layoutY="293.0" text="Contraseña" textFill="WHITE" />
+
+            <PasswordField fx:id="txtPassword11" layoutX="102.0" layoutY="316.0" prefHeight="27.0" prefWidth="245.0"
+                           promptText="Ingresa tu contraseña"
+                           style="-fx-background-color: transparent; -fx-border-color: #8e8e8e; -fx-border-radius: 4px;" />
+
+            <CheckBox layoutX="61.0" layoutY="363.0" text="Mostrar contraseña" textAlignment="CENTER" textFill="WHITE" />
+
+            <Button fx:id="btnregister" layoutX="107.0" layoutY="400.0" onAction="#handleRegister"
+                    prefHeight="25.0" prefWidth="186.0" text="Crear cuenta"
+                    style="-fx-background-color: blue;" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Button>
+
+            <Label layoutX="110.0" layoutY="433.0" text="¿Ya tienes una cuenta?" textFill="WHITE" />
+
+            <Hyperlink fx:id="linkLogin" layoutX="269.0" layoutY="430.0" text="Iniciar sesión" onAction="#volverAlLogin" />
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" />
+            <!-- Iconos -->
+            <ImageView layoutX="75.0" layoutY="193.0">
+               <image>
+                  <Image url="@../../../../assets/icons/icon-user-circle.png" />
+               </image>
+            </ImageView>
+
+            <ImageView layoutX="76.0" layoutY="257.0">
+               <image>
+                  <Image url="@../../../../assets/icons/icon-user-circle.png" />
+               </image>
+            </ImageView>
+
+            <ImageView layoutX="76.0" layoutY="322.0">
+               <image>
+                  <Image url="@../../../../assets/icons/icon-lock-open.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</Pane>

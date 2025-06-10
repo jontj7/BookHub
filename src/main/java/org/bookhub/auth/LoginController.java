@@ -22,12 +22,35 @@ public class LoginController {
     private TextField txtUsername;
 
     @FXML
+    private javafx.scene.control.Hyperlink linkCrearCuenta;
+
+
+    @FXML
     private PasswordField txtPassword;
 
     @FXML
     private Button btnLogin;
 
     private final LoginService loginService = new LoginService();
+
+    @FXML
+    private void abrirVistaRegistro() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/bookhub/view/registrarseview/registrarsehome.fxml"));
+
+            Parent root = loader.load();
+
+            Stage stage = (Stage) linkCrearCuenta.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Crear cuenta");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "No se pudo cargar la vista de registro", Alert.AlertType.ERROR);
+        }
+    }
+
 
     @FXML
     private void handleLogin() {

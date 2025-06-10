@@ -5,6 +5,8 @@ public class Usuario {
     private String nombres;
     private String apellidos;
     private int idRol;
+    private String contrasena;
+
 
     // Getters y setters
     public int getId() {
@@ -38,4 +40,13 @@ public class Usuario {
     public void setIdRol(int idRol) {
         this.idRol = idRol;
     }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
 }
