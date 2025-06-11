@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AutorDAO {
+
     public static List<Autor> obtenerTodos() {
         List<Autor> lista = new ArrayList<>();
         try {
@@ -26,5 +27,44 @@ public class AutorDAO {
         }
 
         return lista;
+    }
+
+    public static void agregar(Autor autor) {
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Autores (Nombre) VALUES (?)")) {
+
+            stmt.setString(1, autor.getNombre());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void editar(Autor autor) {
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("UPDATE Autores SET Nombre = ? WHERE IdAutor = ?")) {
+
+            stmt.setString(1, autor.getNombre());
+            stmt.setInt(2, autor.getId());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void eliminar(int id) {
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Autores WHERE IdAutor = ?")) {
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

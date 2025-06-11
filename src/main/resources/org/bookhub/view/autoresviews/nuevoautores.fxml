@@ -8,14 +8,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="formAgregarLibro" prefHeight="313.0" prefWidth="480.0" style="-fx-background-color: #151515; -fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bookhub.controller.libro.NuevoLibroController">
+<Pane fx:id="formAgregarAutores" prefHeight="313.0" prefWidth="480.0" style="-fx-background-color: #151515; -fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bookhub.controller.autores.AgregarAutorController"
+>
    <children>
       <Label layoutX="32.0" layoutY="113.0" style="-fx-font-weight: bold;" text="Nombre" textFill="white">
          <font>
             <Font name="Inter 18pt Regular" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNombreLibro" layoutX="32.0" layoutY="141.0" prefHeight="40.0" prefWidth="416.0" promptText="Ingresa el nombre del autor" style="-fx-background-color: Transparent; -fx-border-color: #282828; -fx-border-radius: 10px; -fx-text-fill: white; -fx-padding: 0 0 0 35px; -fx-background-radius: 8px;">
+      <TextField fx:id="txtNombreAutor" layoutX="32.0" layoutY="141.0" prefHeight="40.0" prefWidth="416.0" promptText="Ingresa el nombre del autor" style="-fx-background-color: Transparent; -fx-border-color: #282828; -fx-border-radius: 10px; -fx-text-fill: white; -fx-padding: 0 0 0 35px; -fx-background-radius: 8px;">
          <font>
             <Font name="Inter 18pt Medium" size="14.0" />
          </font>
@@ -35,7 +36,7 @@
             <Font name="Inter 18pt SemiBold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="save" layoutX="304.0" layoutY="225.0" onAction="#agregarLibro" prefHeight="45.0" prefWidth="143.0" style="-fx-background-color: #0022FF; -fx-text-fill: white; -fx-background-radius: 6px;" text="Guardar autor">
+      <Button fx:id="Guardar" layoutX="304.0" layoutY="225.0" onAction="#guardarAutor" prefHeight="45.0" prefWidth="143.0" style="-fx-background-color: #0022FF; -fx-text-fill: white; -fx-background-radius: 6px;" text="Guardar autor">
          <font>
             <Font name="Inter 18pt SemiBold" size="16.0" />
          </font>
