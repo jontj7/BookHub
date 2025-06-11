@@ -1,0 +1,132 @@
+.table-view.tabla-oscura {
+    -fx-background-color: #151515;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-view.tabla-oscura .column-header-background {
+    -fx-background-color: #1D1D1D;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #282828;
+}
+
+.table-view.tabla-oscura .column-header-background .label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-family: "Inter";
+    -fx-alignment: CENTER_LEFT; /* Alinea el texto de la cabecera a la izquierda */
+    -fx-padding: 10 15 10 15;
+     -fx-border-radius:10px;
+
+}
+W
+.table-view.tabla-oscura .table-row-cell {
+    -fx-background-color: #151515;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: "Inter";
+}
+
+.table-view.tabla-oscura .table-cell {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: "Inter";
+    -fx-alignment: CENTER_LEFT; /* Alinea el texto de las celdas a la izquierda */
+    -fx-padding: 20 0 20 0;
+}
+
+.table-view.tabla-oscura .table-row-cell:selected {
+    -fx-background-color: #2A2A2A;
+
+}
+
+.combo-box {
+    -fx-font-family: "Inter";
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-background-color: #1D1D1D; /* fondo transparente para que tome el de su contenedor */
+    -fx-background-radius:10px;
+}
+
+.combo-box .text {
+    -fx-fill: white;
+}
+
+.combo-box-popup {
+    -fx-background-color: #1D1D1D; /* fondo oscuro del popup */
+    -fx-border-color: transparent;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #1D1D1D; /* fondo oscuro de la lista */
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+/* Opcional: color de fondo y texto cuando un item está seleccionado o hover */
+.combo-box-popup .list-view .list-cell:filled:selected,
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: #1D1D1D;
+    -fx-text-fill: white;
+}
+
+.date-picker {
+    -fx-background-color: #1D1D1D;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-family: "Inter";
+    -fx-border-color: #333333;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.date-picker .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-family: "Inter";
+    -fx-border-radius: 8px;
+        -fx-background-radius: 8px;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: #333333;
+    -fx-border-radius: 8px;
+        -fx-background-radius: 8px;
+}
+
+.date-picker .arrow-button .arrow {
+    -fx-background-color: white;
+}
+
+.date-picker-popup {
+    -fx-background-color: #1D1D1D;
+    -fx-text-fill: white;
+    -fx-font-family: "Inter";
+}
+
+.date-picker-popup .month-year-pane {
+    -fx-background-color: #2B2B2B;
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .calendar-grid {
+    -fx-background-color: #1D1D1D;
+}
+
+.date-picker-popup .day-cell {
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: #333333;
+}
+
+.date-picker-popup .day-cell:selected {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
+}
+

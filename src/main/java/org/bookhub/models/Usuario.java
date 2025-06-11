@@ -5,6 +5,7 @@ public class Usuario {
     private String nombres;
     private String apellidos;
     private int idRol;
+    private int idEstado;
     private String contrasena;
 
 
@@ -39,6 +40,14 @@ public class Usuario {
 
     public void setIdRol(int idRol) {
         this.idRol = idRol;
+    }
+
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
     }
 
     public String getContrasena() {

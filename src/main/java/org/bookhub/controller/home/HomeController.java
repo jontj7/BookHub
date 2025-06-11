@@ -31,15 +31,15 @@ public class HomeController {
     }
 
     @FXML private void mostrarPrestamos() {
-        cargarVista("/org/bookhub/view/dashoptions/prestamos.fxml");
+        cargarVista("/org/bookhub/view/prestamosview/prestamohome.fxml");
     }
 
     @FXML private void mostrarAutores() {
-        cargarVista("/org/bookhub/view/dashoptions/autores.fxml");
+        cargarVista("/org/bookhub/view/autoresviews/autoreshome.fxml");
     }
 
     @FXML private void mostrarUsuarios() {
-        cargarVista("/org/bookhub/view/dashoptions/usuarios.fxml");
+        cargarVista("/org/bookhub/view/usuariosviews/usuariohome.fxml");
     }
 
     @FXML private void logout() {

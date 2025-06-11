@@ -33,6 +33,9 @@ public class DashboardController implements Initializable {
     @FXML private ComboBox<String> comboCategorias;
     @FXML private Button btnlogout;
 
+
+
+
     private ObservableList<Libro> listaLibros;
 
     @Override
@@ -167,6 +170,7 @@ public class DashboardController implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
 
     // Métodos vacíos de navegación
     @FXML private void abrirVistaLibros() {}

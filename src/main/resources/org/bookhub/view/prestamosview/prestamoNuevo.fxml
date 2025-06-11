@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="699.0" prefWidth="480.0" style="-fx-background-color: #151515; -fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bookhub.controller.prestamos.PrestamoController">
+<Pane fx:id="formNuevoPrestamo" prefHeight="699.0" prefWidth="480.0" style="-fx-background-color: #151515; -fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bookhub.controller.prestamos.PrestamoController">
    <children>
       <ComboBox layoutX="32.0" layoutY="157.0" prefHeight="40.0" prefWidth="416.0" promptText="Selecciona el libro para el prestamo" style="-fx-border-color: #282828; -fx-border-radius: 10px;" stylesheets="@../../../../Style/style.css">
          <opaqueInsets>
@@ -36,12 +36,12 @@
             <Font name="Inter 18pt Regular" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="32.0" layoutY="28.0" style="-fx-font-weight: bold;" text="Editar prestamo" textFill="white">
+      <Label layoutX="32.0" layoutY="28.0" style="-fx-font-weight: bold;" text="Prestamos" textFill="white">
          <font>
             <Font name="Inter 18pt Regular" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="32.0" layoutY="61.0" text="Edita los datos del prestamo seleccionado" textFill="#8d8d8d">
+      <Label layoutX="32.0" layoutY="61.0" text="Agrega un nuevo prestamo al sistema" textFill="#8d8d8d">
          <font>
             <Font name="Inter 18pt Medium" size="14.0" />
          </font>
@@ -51,7 +51,7 @@
             <Font name="Inter 18pt SemiBold" size="16.0" />
          </font>
       </Button>
-      <Button layoutX="282.0" layoutY="609.0" prefHeight="45.0" prefWidth="166.0" style="-fx-background-color: #0022FF; -fx-text-fill: white; -fx-background-radius: 6px;" text="Guardar cambios">
+      <Button layoutX="282.0" layoutY="609.0" prefHeight="45.0" prefWidth="166.0" style="-fx-background-color: #0022FF; -fx-text-fill: white; -fx-background-radius: 6px;" text="Agregar prestamo">
          <font>
             <Font name="Inter 18pt SemiBold" size="16.0" />
          </font>
