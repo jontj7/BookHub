@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.bookhub.controller.home.HomeController"
+      spacing="32" style="-fx-padding: 32; -fx-background-color: #151515;">
+
+    <!-- KPI CARDS -->
+    <HBox fx:id="LineChart" spacing="24">
+        <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 6, 0, 0, 3);">
+            <Label style="-fx-font-size: 14;" text="📚 Total Libros" textFill="white" />
+            <Label fx:id="labelTotalLibros" style="-fx-font-size: 28; -fx-text-fill: #38bdf8; -fx-font-weight: bold;" text="-" />
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 6, 0, 0, 3);">
+            <Label style="-fx-font-size: 14;" text="🔁 Préstamos Pendientes" textFill="white" />
+            <Label fx:id="labelPrestamosPendientes" style="-fx-font-size: 28; -fx-text-fill: #f43f5e; -fx-font-weight: bold;" text="-" />
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 6, 0, 0, 3);">
+            <Label style="-fx-font-size: 14;" text="✅ Préstamos Devueltos" textFill="white" />
+            <Label fx:id="labelPrestamosDevueltos" style="-fx-font-size: 28; -fx-text-fill: #22c55e; -fx-font-weight: bold;" text="-" />
+        </VBox>
+    </HBox>
+
+    <HBox spacing="32">
+        <PieChart fx:id="pieChartCategoria" prefHeight="360" prefWidth="440" style="-fx-background-color: #1e293b; -fx-background-radius: 12;" />
+
+        <BarChart fx:id="barChartTopLibros" prefHeight="360" prefWidth="600" style="-fx-background-color: #1e293b; -fx-background-radius: 12;">
+            <xAxis>
+                <CategoryAxis label="Libros" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="Préstamos" />
+            </yAxis>
+        </BarChart>
+    </HBox>
+    <LineChart fx:id="lineChartPrestamos" prefHeight="380.0" prefWidth="964.0"
+               style="-fx-background-color: #1e293b; -fx-background-radius: 12px;">
+        <xAxis>
+            <CategoryAxis side="BOTTOM" label="Día" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis side="LEFT" label="Cantidad de Préstamos" />
+        </yAxis>
+    </LineChart>
+
+</VBox>
+
