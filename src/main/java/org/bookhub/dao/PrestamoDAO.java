@@ -170,7 +170,7 @@ public class PrestamoDAO {
 
     // OBTENER lista de usuarios activos (Estado = 1)
     public List<Usuario> obtenerUsuariosActivos() {
-        String sql = "SELECT IdUsuario, Nombres, Apellidos FROM Usuarios WHERE Estado = 1";
+        String sql = "SELECT IdUsuario, Nombres, Apellidos FROM Usuarios WHERE IdEstado = 1";
         List<Usuario> lista = new ArrayList<>();
 
         try (Connection conn = ConnectionManager.getConnection();
@@ -193,7 +193,7 @@ public class PrestamoDAO {
 
     // OBTENER lista de libros activos (Estado = 1)
     public List<Libro> obtenerLibrosActivos() {
-        String sql = "SELECT IdLibro, Titulo FROM Libros WHERE Estado = 1";
+        String sql = "SELECT IdLibro, Nombre FROM Libros WHERE IdEstado = 1";
         List<Libro> lista = new ArrayList<>();
 
         try (Connection conn = ConnectionManager.getConnection();
@@ -203,7 +203,7 @@ public class PrestamoDAO {
             while (rs.next()) {
                 Libro l = new Libro();
                 l.setIdLibro(rs.getInt("IdLibro"));
-                l.setNombre(rs.getString("Titulo"));  // Cambiado a "Titulo"
+                l.setNombre(rs.getString("Nombre"));  // Cambiado a "Titulo"
                 lista.add(l);
             }
 

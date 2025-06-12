@@ -31,6 +31,13 @@ public class AutoresController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarColumnas();
         cargarAutores();
+
+        searchAutores.setOnAction(event -> buscarAutores());
+
+        searchAutores.textProperty().addListener((obs, oldText, newText) -> {
+            buscarAutores(); // llama siempre que cambia el texto
+        });
+
     }
 
     private void configurarColumnas() {
@@ -125,4 +132,15 @@ public class AutoresController implements Initializable {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+
+    private void buscarAutores() {
+        String nombre = searchAutores.getText().trim();
+
+        if (!nombre.isEmpty()) {
+            listaAutores.setAll(AutorDAO.buscarPorNombre(nombre));
+        } else {
+            cargarAutores();
+        }
+    }
+
 }

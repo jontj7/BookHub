@@ -67,4 +67,31 @@ public class AutorDAO {
             e.printStackTrace();
         }
     }
+
+    public static List<Autor> buscarPorNombre(String nombre) {
+        List<Autor> autores = new ArrayList<>();
+
+        String sql = "SELECT IdAutor, Nombre FROM Autores WHERE Nombre LIKE ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, "%" + nombre + "%"); // búsqueda parcial
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("IdAutor");
+                String nombreAutor = rs.getString("Nombre");
+
+                Autor autor = new Autor(id, nombreAutor);
+                autores.add(autor);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return autores;
+    }
+
 }
