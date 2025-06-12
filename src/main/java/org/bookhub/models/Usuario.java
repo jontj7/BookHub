@@ -58,4 +58,8 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
+    @Override
+    public String toString() {
+        return getNombres();
+    }
 }

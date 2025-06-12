@@ -25,7 +25,6 @@ public class UsuarioDAO {
                 u.setId(rs.getInt("IdUsuario"));
                 u.setNombres(rs.getString("Nombres"));
                 u.setApellidos(rs.getString("Apellidos"));
-                u.setIdRol(rs.getInt("IdRol"));
                 return u;
             }
         } catch (Exception e) {
@@ -44,7 +43,6 @@ public class UsuarioDAO {
             stmt.setString(1, usuario.getNombres());
             stmt.setString(2, usuario.getApellidos());
             stmt.setString(3, usuario.getContrasena());
-            stmt.setInt(4, usuario.getIdRol());
 
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
