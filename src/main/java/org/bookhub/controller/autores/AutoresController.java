@@ -31,9 +31,7 @@ public class AutoresController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarColumnas();
         cargarAutores();
-
         searchAutores.setOnAction(event -> buscarAutores());
-
         searchAutores.textProperty().addListener((obs, oldText, newText) -> {
             buscarAutores(); // llama siempre que cambia el texto
         });

@@ -44,14 +44,14 @@
             <Font name="Inter 18pt SemiBold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btnActualizarPrestamo" layoutX="282.0" layoutY="609.0" prefHeight="45.0" prefWidth="166.0" style="-fx-background-color: #0022FF; -fx-text-fill: white; -fx-background-radius: 6px;" text="Guardar cambios">
+      <Button fx:id="btnActualizarPrestamo" layoutX="282.0" layoutY="609.0" prefHeight="45.0" onAction="#guardarCambios" prefWidth="166.0" style="-fx-background-color: #0022FF; -fx-text-fill: white; -fx-background-radius: 6px;" text="Guardar cambios">
          <font>
             <Font name="Inter 18pt SemiBold" size="16.0" />
          </font>
       </Button>
       <DatePicker fx:id="dateFechaPrestamo" editable="false" layoutX="32.0" layoutY="363.0" prefHeight="40.0" prefWidth="416.0" stylesheets="@../../../../Style/style.css" />
       <DatePicker fx:id="dateFechaDevolucion" editable="false" layoutX="33.0" layoutY="461.0" prefHeight="40.0" prefWidth="416.0" stylesheets="@../../../../Style/style.css" />
-      <ComboBox fx:id="comboLibros" layoutX="32.0" layoutY="159.0" prefHeight="40.0" prefWidth="416.0" promptText="Selecciona el libro para el préstamo" style="-fx-border-color: #282828; -fx-border-radius: 10px;" stylesheets="@../../../../Style/style.css" />
-      <ComboBox fx:id="comboUsuarios" layoutX="32.0" layoutY="261.0" prefHeight="40.0" prefWidth="416.0" promptText="Selecciona el alumno para el préstamo" style="-fx-border-color: #282828; -fx-border-radius: 10px;" stylesheets="@../../../../Style/style.css" />
+      <ComboBox fx:id="CbxIdLibro" layoutX="32.0" layoutY="159.0" prefHeight="40.0" prefWidth="416.0" promptText="Selecciona el libro para el préstamo" style="-fx-border-color: #282828; -fx-border-radius: 10px;" stylesheets="@../../../../Style/style.css" />
+      <ComboBox fx:id="CbxIdUsuario" layoutX="32.0" layoutY="261.0" prefHeight="40.0" prefWidth="416.0" promptText="Selecciona el alumno para el préstamo" style="-fx-border-color: #282828; -fx-border-radius: 10px;" stylesheets="@../../../../Style/style.css" />
    </children>
 </Pane>

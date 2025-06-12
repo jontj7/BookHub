@@ -22,9 +22,9 @@ public class PrestamoService {
     }
 
     // Editar un préstamo existente
-    public boolean editarPrestamo(Prestamo prestamo) {
+   /* public boolean editarPrestamo(Prestamo prestamo) {
         return prestamoDAO.editar(prestamo);
-    }
+    }*/
 
     // Inactivar un préstamo (cambia estado a 2)
     public boolean inactivarPrestamo(int idPrestamo) {

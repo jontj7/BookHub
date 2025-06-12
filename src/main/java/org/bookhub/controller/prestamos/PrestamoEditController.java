@@ -3,108 +3,115 @@ package org.bookhub.controller.prestamos;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.bookhub.models.Autor;
 import org.bookhub.models.Prestamo;
-import org.bookhub.models.Libro;
+import org.bookhub.dao.PrestamoDAO;
 import org.bookhub.models.Usuario;
 import org.bookhub.service.PrestamoService;
+
+import org.bookhub.models.Libro;
+
 
 import java.time.LocalDate;
 
 public class PrestamoEditController {
 
     @FXML
-    private ComboBox<Libro> comboLibros;
-
+    private ComboBox<Usuario> CbxIdUsuario;
     @FXML
-    private ComboBox<Usuario> comboUsuarios;
-
+    private ComboBox<Libro> CbxIdLibro;
     @FXML
     private DatePicker dateFechaPrestamo;
-
     @FXML
     private DatePicker dateFechaDevolucion;
-
     @FXML
-    private Button btnActualizarPrestamo;
+    private Prestamo prestamoActual;
 
-    private final PrestamoService prestamoService = new PrestamoService();
-
-    private Prestamo prestamoActual; // El préstamo que estamos editando
-
-    @FXML
-    public void initialize() {
-        comboLibros.getItems().addAll(prestamoService.obtenerLibrosActivos());
-        comboUsuarios.getItems().addAll(prestamoService.obtenerUsuariosActivos());
-
-        // El botón para actualizar llama al método actualizarPrestamo()
-        btnActualizarPrestamo.setOnAction(e -> actualizarPrestamo());
-    }
-
-    /**
-     * Este método debe llamarse desde quien abra esta ventana
-     * para pasar el préstamo que se va a editar y cargar los datos.
-     */
     public void setPrestamo(Prestamo prestamo) {
         this.prestamoActual = prestamo;
 
-        // Seleccionar en los ComboBox los elementos correspondientes al préstamo actual
-        comboLibros.setValue(obtenerLibroPorId(prestamo.getIdLibro()));
-        comboUsuarios.setValue(obtenerUsuarioPorId(prestamo.getIdUsuario()));
+        int idUsuario = prestamo.getIdUsuario();
+        for (Usuario u : CbxIdUsuario.getItems()) {
+            if (u.getId() == idUsuario) {
+                CbxIdUsuario.setValue(u);
+                break;
+            }
+        }
 
-        // Cargar las fechas
+        // Buscar libro por ID en el ComboBox y seleccionarlo
+        int idLibro = prestamo.getIdLibro();
+        for (Libro l : CbxIdLibro.getItems()) {
+            if (l.getIdLibro() == idLibro) {
+                CbxIdLibro.setValue(l);
+                break;
+            }
+        }
         dateFechaPrestamo.setValue(prestamo.getFechaPrestamo());
         dateFechaDevolucion.setValue(prestamo.getFechaDevolucion());
     }
 
-    private Libro obtenerLibroPorId(int idLibro) {
-        return comboLibros.getItems().stream()
-                .filter(libro -> libro.getIdLibro() == idLibro)
-                .findFirst()
-                .orElse(null);
+    private final PrestamoService prestamoService = new PrestamoService();
+    @FXML
+    public void initialize() {
+        CbxIdUsuario.getItems().addAll(prestamoService.obtenerUsuariosActivos());
+        CbxIdLibro.getItems().addAll(prestamoService.obtenerLibrosActivos());
     }
 
-    private Usuario obtenerUsuarioPorId(int idUsuario) {
-        return comboUsuarios.getItems().stream()
-                .filter(usuario -> usuario.getId() == idUsuario)
-                .findFirst()
-                .orElse(null);
-    }
+    @FXML
+    private void guardarCambios() {
+        try {
+            Usuario usuarioSeleccionado = CbxIdUsuario.getValue();
+            Libro libroSeleccionado = CbxIdLibro.getValue();
 
-    private void actualizarPrestamo() {
-        Libro libro = comboLibros.getValue();
-        Usuario usuario = comboUsuarios.getValue();
-        LocalDate fechaPrestamo = dateFechaPrestamo.getValue();
-        LocalDate fechaDevolucion = dateFechaDevolucion.getValue();
+            if (usuarioSeleccionado == null || libroSeleccionado == null) {
+                mostrarAlerta("Campos incompletos", "Debe seleccionar un usuario y un libro.");
+                return;
+            }
 
-        if (libro == null || usuario == null || fechaDevolucion == null) {
-            mostrarAlerta("Completa todos los campos.");
-            return;
-        }
+            int idUsuario = usuarioSeleccionado.getId();
+            int idLibro = libroSeleccionado.getIdLibro();
 
-        prestamoActual.setIdLibro(libro.getIdLibro());
-        prestamoActual.setIdUsuario(usuario.getId());
-        prestamoActual.setFechaPrestamo(fechaPrestamo);
-        prestamoActual.setFechaDevolucion(fechaDevolucion);
-        // Puedes actualizar también el estado si lo necesitas
-        // prestamoActual.setIdEstado(...);
+            LocalDate fechaPrestamo = dateFechaPrestamo.getValue();
+            LocalDate fechaDevolucion = dateFechaDevolucion.getValue();
 
-        boolean exito = prestamoService.editarPrestamo(prestamoActual);
-        if (exito) {
-            mostrarAlerta("✅ Préstamo actualizado con éxito.");
+            if (fechaPrestamo == null || fechaDevolucion == null) {
+                mostrarAlerta("Campos incompletos", "Todos los campos deben estar llenos.");
+                return;
+            }
+
+            prestamoActual.setIdUsuario(idUsuario);
+            prestamoActual.setIdLibro(idLibro);
+            prestamoActual.setFechaPrestamo(fechaPrestamo);
+            prestamoActual.setFechaDevolucion(fechaDevolucion);
+
+            PrestamoDAO.editar(prestamoActual);
             cerrarVentana();
-        } else {
-            mostrarAlerta("❌ Error al actualizar el préstamo.");
+
+        } catch (NumberFormatException e) {
+            mostrarAlerta("Formato incorrecto", "ID de usuario y libro deben ser números.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta("Error", "No se pudieron guardar los cambios.");
         }
     }
 
-    private void mostrarAlerta(String mensaje) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setContentText(mensaje);
-        alerta.showAndWait();
+
+    @FXML
+    private void cancelar() {
+        cerrarVentana();
     }
 
     private void cerrarVentana() {
-        Stage stage = (Stage) btnActualizarPrestamo.getScene().getWindow();
+        Stage stage = (Stage) CbxIdLibro.getScene().getWindow();
         stage.close();
     }
+
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
 }

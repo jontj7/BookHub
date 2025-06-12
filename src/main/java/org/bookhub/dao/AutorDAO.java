@@ -1,6 +1,7 @@
 package org.bookhub.dao;
 
 import org.bookhub.models.Autor;
+import org.bookhub.models.Prestamo;
 import org.bookhub.utils.ConnectionManager;
 
 import java.sql.*;
@@ -14,7 +15,7 @@ public class AutorDAO {
         try {
             Connection conn = ConnectionManager.getConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT IdAutor, Nombre FROM Autores");
+            ResultSet rs = stmt.executeQuery("SELECT IdAutor, Nombre FROM Autores WHERE IdEstado = 1");
 
             while (rs.next()) {
                 lista.add(new Autor(rs.getInt("IdAutor"), rs.getString("Nombre")));
@@ -58,7 +59,7 @@ public class AutorDAO {
 
     public static void eliminar(int id) {
         try (Connection conn = ConnectionManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Autores WHERE IdAutor = ?")) {
+             PreparedStatement stmt = conn.prepareStatement("UPDATE Autores SET IdEstado = 2 WHERE IdAutor = ?")) {
 
             stmt.setInt(1, id);
             stmt.executeUpdate();
@@ -93,5 +94,8 @@ public class AutorDAO {
 
         return autores;
     }
+
+
+
 
 }

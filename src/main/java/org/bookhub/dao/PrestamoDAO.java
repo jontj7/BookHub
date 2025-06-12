@@ -32,24 +32,26 @@ public class PrestamoDAO {
     }
 
     // EDITAR un préstamo existente
-    public boolean editar(Prestamo prestamo) {
+    public static void editar(Prestamo prestamo) {
         String sql = "UPDATE Prestamos SET IdUsuario = ?, IdLibro = ?, FechaPrestamo = ?, FechaDevolucion = ?, Estado = ? WHERE IdPrestamo = ?";
+
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, prestamo.getIdUsuario());
             stmt.setInt(2, prestamo.getIdLibro());
-            stmt.setDate(3, Date.valueOf(prestamo.getFechaPrestamo()));
-            stmt.setDate(4, Date.valueOf(prestamo.getFechaDevolucion()));
-            stmt.setString(5, prestamo.getEstado());  // Cambiado a 'getEstado()'
+            stmt.setDate(3, java.sql.Date.valueOf(prestamo.getFechaPrestamo()));
+            stmt.setDate(4, java.sql.Date.valueOf(prestamo.getFechaDevolucion()));
+            stmt.setString(5, prestamo.getEstado());
             stmt.setInt(6, prestamo.getIdPrestamo());
 
-            return stmt.executeUpdate() > 0;
+            stmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
     }
+
 
     // INACTIVAR un préstamo (cambiar estado a 2)
     public boolean inactivar(int idPrestamo) {
@@ -86,7 +88,7 @@ public class PrestamoDAO {
     // BUSCAR TODOS
     public List<Prestamo> buscarTodos() {
         List<Prestamo> prestamos = new ArrayList<>();
-        String sql = "SELECT p.IdPrestamo, p.IdUsuario, p.IdLibro, CONCAT(u.Nombres, ' ', u.Apellidos) AS nombreUsuario, l.Nombre AS nombreLibro, p.FechaPrestamo, p.FechaDevolucion, p.Estado FROM Prestamos p JOIN Usuarios u ON p.IdUsuario = u.IdUsuario JOIN Libros l ON p.IdLibro = l.IdLibro";
+        String sql = "SELECT p.IdPrestamo, p.IdUsuario, p.IdLibro, CONCAT(u.Nombres, ' ', u.Apellidos) AS nombreUsuario, l.Nombre AS nombreLibro, p.FechaPrestamo, p.FechaDevolucion, p.Estado FROM Prestamos p JOIN Usuarios u ON p.IdUsuario = u.IdUsuario JOIN Libros l ON p.IdLibro = l.IdLibro Where p.IdEstado = 1";
 
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -211,5 +213,50 @@ public class PrestamoDAO {
             e.printStackTrace();
         }
         return lista;
+    }
+
+    public static void eliminar(int id) {
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("UPDATE Prestamos SET IdEstado = 2 WHERE IdPrestamo = ?")) {
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<Prestamo> buscarPorFechas(LocalDate fechaInicio, LocalDate fechaFin) {
+        List<Prestamo> prestamos = new ArrayList<>();
+
+        String sql = "SELECT IdPrestamo, IdUsuario, IdLibro, FechaPrestamo, FechaDevolucion, Estado " +
+                "FROM Prestamos " +
+                "WHERE FechaPrestamo >= ? AND FechaDevolucion <= ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setDate(1, java.sql.Date.valueOf(fechaInicio));
+            stmt.setDate(2, java.sql.Date.valueOf(fechaFin));
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Prestamo prestamo = new Prestamo();
+                prestamo.setIdPrestamo(rs.getInt("IdPrestamo"));
+                prestamo.setIdUsuario(rs.getInt("IdUsuario"));
+                prestamo.setIdLibro(rs.getInt("IdLibro"));
+                prestamo.setFechaPrestamo(rs.getDate("FechaPrestamo").toLocalDate());
+                prestamo.setFechaDevolucion(rs.getDate("FechaDevolucion").toLocalDate());
+                prestamo.setEstado(rs.getString("Estado"));
+
+                prestamos.add(prestamo);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return prestamos;
     }
 }
