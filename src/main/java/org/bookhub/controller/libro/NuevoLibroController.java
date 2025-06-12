@@ -61,7 +61,8 @@ public class NuevoLibroController {
         libro.setImagen(null); // puedes asignar una imagen por defecto si usas rutas
 
         try {
-            LibroDAO.insertarLibro(libro);
+            LibroDAO libroDAO = new LibroDAO(); // instanciamos DAO
+            libroDAO.insertarLibro(libro);      // llamamos al método no estático
             mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Libro agregado correctamente.");
             cancelar(); // cerrar ventana
         } catch (Exception e) {
