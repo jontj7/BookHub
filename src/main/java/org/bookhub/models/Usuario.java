@@ -7,7 +7,7 @@ public class Usuario {
     private int idRol;
     private int idEstado;
     private String contrasena;
-
+    private String usuario;
 
     // Getters y setters
     public int getId() {
@@ -56,6 +56,14 @@ public class Usuario {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     @Override

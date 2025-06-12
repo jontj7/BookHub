@@ -12,7 +12,8 @@ module org.bookhub.bookhub {
     opens org.bookhub.controller.home to javafx.fxml;
     opens org.bookhub.controller.libro to javafx.fxml;
     opens org.bookhub.controller.prestamos to javafx.fxml;
-    opens org.bookhub.controller.autores to javafx.fxml; // ✅ AÑADIDO
+    opens org.bookhub.controller.autores to javafx.fxml;
+    opens org.bookhub.controller.usuarios to javafx.fxml;
     opens org.bookhub.models to javafx.base;
 
     exports org.bookhub;
@@ -21,5 +22,6 @@ module org.bookhub.bookhub {
     exports org.bookhub.controller.home;
     exports org.bookhub.controller.libro;
     exports org.bookhub.controller.prestamos;
-    exports org.bookhub.controller.autores; // ✅ AÑADIDO
+    exports org.bookhub.controller.autores;
+    exports org.bookhub.controller.usuarios;
 }
