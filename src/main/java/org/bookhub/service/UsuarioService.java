@@ -3,7 +3,7 @@ package org.bookhub.service;
 import org.bookhub.dao.UsuarioDAO;
 import org.bookhub.models.Usuario;
 
-public class UsuarioService {
+public class  UsuarioService {
 
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
 

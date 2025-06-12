@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="formNuevoUsuario" prefHeight="507.0" prefWidth="480.0" style="-fx-background-color: #151515; -fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bookhub.controller.prestamos.PrestamoController">
+<Pane fx:id="formNuevoUsuario" prefHeight="507.0" prefWidth="480.0" style="-fx-background-color: #151515; -fx-padding: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bookhub.controller.usuarios.UsuariosEditController">
    <children>
       <Label layoutX="32.0" layoutY="28.0" style="-fx-font-weight: bold;" text="Editar usuario" textFill="white">
          <font>
