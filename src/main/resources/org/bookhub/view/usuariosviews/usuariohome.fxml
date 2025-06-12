@@ -20,7 +20,7 @@
    <children>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="84.0" spacing="16.0">
          <children>
-            <Button layoutX="11.0" layoutY="11.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" HBox.hgrow="ALWAYS">
+            <Button onAction="#onNuevoUsuario" layoutX="11.0" layoutY="11.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" HBox.hgrow="ALWAYS">
                <graphic>
                   <Pane fx:id="NuevoUser" nodeOrientation="LEFT_TO_RIGHT">
                      <children>
@@ -47,7 +47,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button contentDisplay="GRAPHIC_ONLY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" HBox.hgrow="ALWAYS">
+            <Button onAction="#onEditarUsuario" contentDisplay="GRAPHIC_ONLY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" HBox.hgrow="ALWAYS">
                <graphic>
                   <Pane fx:id="EditUser" nodeOrientation="LEFT_TO_RIGHT">
                      <children>
@@ -74,7 +74,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" HBox.hgrow="ALWAYS">
+            <Button onAction="#onEliminarUsuario" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" HBox.hgrow="ALWAYS">
                <graphic>
                   <Pane nodeOrientation="LEFT_TO_RIGHT">
                      <children>

@@ -230,9 +230,7 @@ public class PrestamoDAO {
     public static List<Prestamo> buscarPorFechas(LocalDate fechaInicio, LocalDate fechaFin) {
         List<Prestamo> prestamos = new ArrayList<>();
 
-        String sql = "SELECT IdPrestamo, IdUsuario, IdLibro, FechaPrestamo, FechaDevolucion, Estado " +
-                "FROM Prestamos " +
-                "WHERE FechaPrestamo >= ? AND FechaDevolucion <= ?";
+        String sql = "SELECT p.IdPrestamo,p.IdUsuario,p.IdLibro,CONCAT(u.Nombres, ' ', u.Apellidos) AS nombreUsuario,l.Nombre AS nombreLibro,p.FechaPrestamo,p.FechaDevolucion,p.Estado FROM Prestamos p JOIN Usuarios u ON p.IdUsuario = u.IdUsuario JOIN Libros l ON p.IdLibro = l.IdLibro WHERE p.FechaPrestamo >= ? AND p.FechaDevolucion <= ?;";
 
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -250,8 +248,12 @@ public class PrestamoDAO {
                 prestamo.setFechaDevolucion(rs.getDate("FechaDevolucion").toLocalDate());
                 prestamo.setEstado(rs.getString("Estado"));
 
+                prestamo.setNombreUsuario(rs.getString("nombreUsuario"));  // O como definas el atributo
+                prestamo.setNombreLibro(rs.getString("nombreLibro"));
+
                 prestamos.add(prestamo);
             }
+
 
         } catch (SQLException e) {
             e.printStackTrace();

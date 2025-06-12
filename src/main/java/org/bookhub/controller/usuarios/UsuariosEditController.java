@@ -32,7 +32,8 @@ public class UsuariosEditController {
         String contrasena = txtContrasena.getText();
 
         // Validación
-        if (nombres.isEmpty() || apellidos.isEmpty() || contrasena.isEmpty()) {
+        if (nombres == null || nombres.isEmpty() ||
+                apellidos == null || apellidos.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Campos requeridos");
             alert.setHeaderText(null);

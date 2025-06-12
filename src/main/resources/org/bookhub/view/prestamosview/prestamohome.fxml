@@ -18,7 +18,7 @@
       <Cursor fx:constant="W_RESIZE" />
    </cursor>
    <children>
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="84.0" spacing="16.0">
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="103.0" prefWidth="1189.0" spacing="16.0">
          <children>
             <Button fx:id="btnNuevoPrestamo" layoutX="11.0" layoutY="11.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirFormularioNuevoPrestamo" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" HBox.hgrow="ALWAYS">
                <graphic>
@@ -34,8 +34,8 @@
                               <Font name="Inter 18pt Medium" size="14.0" />
                            </font>
                         </Label>
-                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="8.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" style="-fx-border-radius: 35px; -fx-background-color: #0022FF;" />
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="19.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="13.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" style="-fx-border-radius: 35px; -fx-background-color: #0022FF;" />
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="23.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../assets/icons/icon-file-plus.png" />
                            </image>
@@ -47,7 +47,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnEditarPrestamo" contentDisplay="GRAPHIC_ONLY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" HBox.hgrow="ALWAYS">
+            <Button fx:id="btnEditarPrestamo" contentDisplay="GRAPHIC_ONLY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#abrirFormularioEditar" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" HBox.hgrow="ALWAYS">
                <graphic>
                   <Pane nodeOrientation="LEFT_TO_RIGHT">
                      <children>
@@ -61,8 +61,8 @@
                               <Font name="Inter 18pt Medium" size="14.0" />
                            </font>
                         </Label>
-                        <Button alignment="CENTER" layoutX="5.0" layoutY="8.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" style="-fx-border-radius: 35px; -fx-background-color: #FF8000;" />
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="19.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                        <Button alignment="CENTER" layoutX="9.0" layoutY="13.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" style="-fx-border-radius: 35px; -fx-background-color: #FF8000;" />
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="23.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../assets/icons/icon-edit-circle.png" />
                            </image>
@@ -74,7 +74,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" HBox.hgrow="ALWAYS">
+            <Button onAction="#eliminarPrestamo" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" HBox.hgrow="ALWAYS">
                <graphic>
                   <Pane nodeOrientation="LEFT_TO_RIGHT">
                      <children>
@@ -88,8 +88,8 @@
                               <Font name="Inter 18pt Medium" size="14.0" />
                            </font>
                         </Label>
-                        <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="5.0" layoutY="8.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" style="-fx-border-radius: 35px; -fx-background-color: #FF005E;" />
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="19.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                        <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="11.0" layoutY="12.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="47.0" style="-fx-border-radius: 35px; -fx-background-color: #FF005E;" />
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../assets/icons/icon-trash.png" />
                            </image>
@@ -126,8 +126,12 @@
                         <Image url="@../../../../assets/icons/seachr-gray.png" />
                      </image>
                   </ImageView>
-                  <DatePicker maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="204.0" stylesheets="@../../../../Style/style.css" HBox.hgrow="ALWAYS" />
-                  <DatePicker layoutX="66.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="204.0" stylesheets="@../../../../Style/style.css" HBox.hgrow="ALWAYS" />
+                  <DatePicker fx:id="dpFechaInicio" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="204.0" stylesheets="@../../../../Style/style.css" HBox.hgrow="ALWAYS" />
+                  <DatePicker fx:id="dpFechaFin" layoutX="66.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="204.0" stylesheets="@../../../../Style/style.css" HBox.hgrow="ALWAYS" />
+                  <Button onAction="#buscarPrestamosPorFechas" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #0022FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Buscar">
+                     <font>
+                        <Font name="Inter 18pt Medium" size="14.0" />
+                     </font></Button>
                </children>
             </HBox>
             <TableView fx:id="tablaPrestamos" maxHeight="1.7976931348623157E308" prefWidth="200.0" style="-fx-border-radius: 25px;" styleClass="tabla-oscura" stylesheets="@../../../../Style/style.css" VBox.vgrow="ALWAYS">

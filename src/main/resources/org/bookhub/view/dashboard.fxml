@@ -78,7 +78,7 @@
                   </Pane>
                </graphic>
             </Button>
-            <Button fx:id="btnEliminarLibro" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#confirmarEliminacionLibro" prefHeight="84.0" prefWidth="380.0" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" textFill="WHITE" HBox.hgrow="ALWAYS">
+            <Button fx:id="btnEliminarLibro" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#eliminarAutor" prefHeight="84.0" prefWidth="380.0" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 8px;" textFill="WHITE" HBox.hgrow="ALWAYS">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -116,7 +116,7 @@ public class PrestamoController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
             stage.showAndWait();
-
+            cargarDatos();
         } catch (IOException e) {
             mostrarError("No se pudo abrir el formulario de nuevo libro", e.getMessage());
         }
@@ -164,7 +164,7 @@ public class PrestamoController {
 
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle("Eliminar Autor");
-        confirm.setHeaderText("¿Estás seguro de eliminar a " + seleccionado.getFechaPrestamo() + "?");
+        confirm.setHeaderText("¿Estás seguro de eliminar el registro de " + seleccionado.getFechaPrestamo() + "?");
         confirm.setContentText("Esta acción no se puede deshacer.");
 
         confirm.showAndWait().ifPresent(response -> {

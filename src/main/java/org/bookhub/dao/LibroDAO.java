@@ -12,7 +12,7 @@ public class LibroDAO {
 
     public List<Libro> listarLibros() {
         List<Libro> libros = new ArrayList<>();
-        String sql = "SELECT * FROM Libros";
+        String sql = "SELECT * FROM Libros WHERE IdEstado = 1";
 
         try (Connection conn = ConnectionManager.getConnection();
              Statement stmt = conn.createStatement();
@@ -94,6 +94,18 @@ public class LibroDAO {
         return -1;
     }
 
+    public static void eliminar(int id) {
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("UPDATE Libros SET IdEstado = 2 WHERE IdLibro = ?")) {
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public int obtenerIdCategoriaPorNombre(String nombreCategoria) {
         String sql = "SELECT IdCategoria FROM Categorias WHERE Nombre = ?";
         try (Connection conn = ConnectionManager.getConnection();
@@ -115,8 +127,7 @@ public class LibroDAO {
         SELECT l.IdLibro, l.Nombre, a.Nombre AS NombreAutor, c.Nombre AS NombreCategoria, l.Stock
         FROM Libros l
         JOIN Autores a ON l.IdAutor = a.IdAutor
-        JOIN Categorias c ON l.IdCategoria = c.IdCategoria
-    """;
+        JOIN Categorias c ON l.IdCategoria = c.IdCategoria WHERE l.IdEstado = 1""";
 
         try (Connection conn = ConnectionManager.getConnection();
              Statement stmt = conn.createStatement();

@@ -142,4 +142,137 @@
     -fx-font-weight: bold;
 }
 
+/* Fondo oscuro para todo el gráfico */
+.chart {
+    -fx-background-color: #151515;
+}
+
+/* Título del gráfico */
+.chart-title {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+/* Estilo para los labels sobre las porciones del pastel */
+.chart-pie-label {
+    -fx-fill: white; /* color encendido como cian */
+    -fx-font-size: 16px;
+}
+
+/* Leyenda: ítems y texto en blanco */
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 4px;
+}
+
+.chart-legend-item {
+    -fx-text-fill: white;
+}
+
+.chart-legend-item-symbol {
+    -fx-background-radius: 6px;
+    -fx-padding: 4px;
+}
+
+/* Colores personalizados para las porciones del pastel */
+.default-color0.chart-pie {
+    -fx-pie-color: #FF8000;
+}
+.default-color1.chart-pie {
+    -fx-pie-color: #0022FF;
+}
+.default-color2.chart-pie {
+    -fx-pie-color: #62FF00;
+}
+.default-color3.chart-pie {
+    -fx-pie-color: #FF005D;
+}
+
+.chart {
+    -fx-background-color: #151515;
+    -fx-padding: 20;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+}
+
+.chart-plot-background {
+    -fx-background-color: #1D1D1D;
+    -fx-border-color: transparent;
+}
+
+.chart-series-line {
+    -fx-stroke: #0022FF;
+    -fx-stroke-width: 2px;
+}
+
+.chart-symbol {
+    -fx-background-color: white, #0022FF;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.chart-legend-item {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.axis {
+    -fx-tick-label-fill: white;
+    -fx-font-size: 12px;
+}
+
+.axis-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.chart {
+    -fx-background-color: #151515;
+    -fx-padding: 20;
+    -fx-border-color: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: #1D1D1D;
+}
+
+.default-color0.chart-bar {
+    -fx-bar-fill: #0022FF;
+}
+
+.default-color1.chart-bar {
+    -fx-bar-fill: #00BFFF; /* Azul claro alternativo (opcional) */
+}
+
+.chart-bar {
+    -fx-background-insets: 0;
+    -fx-background-radius: 4px;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.chart-legend-item {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.axis {
+    -fx-tick-label-fill: white;
+    -fx-font-size: 12px;
+}
+
+.axis-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
 

@@ -13,7 +13,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.bookhub.controller.libro.EditLibroController;
+import org.bookhub.dao.AutorDAO;
 import org.bookhub.dao.LibroDAO;
+import org.bookhub.models.Autor;
 import org.bookhub.models.Libro;
 
 import java.io.IOException;
@@ -96,6 +98,27 @@ public class DashboardController implements Initializable {
         });
 
         tablaLibros.setItems(filtro);
+    }
+
+    @FXML
+    private void eliminarAutor() {
+        Libro seleccionado = tablaLibros.getSelectionModel().getSelectedItem();
+        if (seleccionado == null) {
+            mostrarError("Eliminación", "Selecciona un autor para eliminar.");
+            return;
+        }
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Eliminar Autor");
+        confirm.setHeaderText("¿Estás seguro de eliminar a " + seleccionado.getNombre() + "?");
+        confirm.setContentText("Esta acción no se puede deshacer.");
+
+        confirm.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                LibroDAO.eliminar(seleccionado.getIdLibro());
+                cargarLibros();
+            }
+        });
     }
 
     // Abrir formulario "Nuevo Libro"

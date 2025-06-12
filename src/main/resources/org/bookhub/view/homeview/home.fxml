@@ -83,43 +83,63 @@
     <!-- CONTENIDO -->
     <center>
         <StackPane fx:id="contenidoVista" style="-fx-padding: 16px;">
-            <VBox spacing="32" style="-fx-padding: 32; -fx-background-color: #151515;">
-                <HBox fx:id="LineChart" spacing="24">
-                    <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 6, 0, 0, 3);">
-                        <Label style="-fx-font-size: 14;" text="📚 Total Libros" textFill="white" />
-                        <Label fx:id="labelTotalLibros" style="-fx-font-size: 28; -fx-text-fill: #38bdf8; -fx-font-weight: bold;" text="-" />
+            <VBox spacing="16.0" style="-fx-padding: 16; -fx-background-color: #151515;">
+                <HBox fx:id="LineChart" spacing="16.0">
+                    <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #1D1D1D; -fx-padding: 20; -fx-background-radius: 12; -fx-border-color: #282828; -fx-background-radius: 10px; -fx-border-radius: 10px;" HBox.hgrow="ALWAYS">
+                  <Label text="Total de libros registrados" textFill="#8d8d8d">
+                     <font>
+                        <Font name="Inter 18pt SemiBold" size="16.0" />
+                     </font>
+                  </Label>
+                        <Label fx:id="labelTotalLibros" style="-fx-font-size: 32; -fx-text-fill: white; -fx-font-weight: bold;" text="-">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                     </VBox>
 
-                    <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 6, 0, 0, 3);">
-                        <Label style="-fx-font-size: 14;" text="🔁 Préstamos Pendientes" textFill="white" />
-                        <Label fx:id="labelPrestamosPendientes" style="-fx-font-size: 28; -fx-text-fill: #f43f5e; -fx-font-weight: bold;" text="-" />
+                    <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #1D1D1D; -fx-padding: 20; -fx-background-radius: 12; -fx-border-color: #282828; -fx-background-radius: 10px; -fx-border-radius: 10px;" HBox.hgrow="ALWAYS">
+                  <Label text="Prestamos pendientes" textFill="#8d8d8d">
+                     <font>
+                        <Font name="Inter 18pt SemiBold" size="16.0" />
+                     </font>
+                  </Label>
+                        <Label fx:id="labelPrestamosPendientes" style="-fx-font-size: 32; -fx-text-fill: white; -fx-font-weight: bold;" text="-">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                     </VBox>
 
-                    <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 6, 0, 0, 3);">
-                        <Label style="-fx-font-size: 14;" text="✅ Préstamos Devueltos" textFill="white" />
-                        <Label fx:id="labelPrestamosDevueltos" style="-fx-font-size: 28; -fx-text-fill: #22c55e; -fx-font-weight: bold;" text="-" />
+                    <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #1D1D1D; -fx-padding: 20; -fx-background-radius: 12; -fx-border-color: #282828; -fx-background-radius: 10px; -fx-border-radius: 10px;" HBox.hgrow="ALWAYS">
+                  <Label text="Prestamos devueltos" textFill="#8d8d8d">
+                     <font>
+                        <Font name="Inter 18pt SemiBold" size="16.0" />
+                     </font>
+                  </Label>
+                        <Label fx:id="labelPrestamosDevueltos" style="-fx-font-size: 32; -fx-text-fill: White; -fx-font-weight: bold;" text="-">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                     </VBox>
                 </HBox>
 
-                <HBox spacing="32">
-                    <PieChart fx:id="pieChartCategoria" prefHeight="360" prefWidth="440" style="-fx-background-color: #1e293b; -fx-background-radius: 12;" />
+                <HBox spacing="16.0" VBox.vgrow="ALWAYS">
+                    <PieChart fx:id="pieChartCategoria" prefHeight="360" prefWidth="440" style="-fx-background-color: #1D1D1D; -fx-background-radius: 12; -fx-border-color: #282828; -fx-border-radius: 12; -fx-text-fill: white;" stylesheets="@../../../../Style/style.css" title="Categorias" HBox.hgrow="ALWAYS" />
 
-                    <BarChart fx:id="barChartTopLibros" prefHeight="360" prefWidth="600" style="-fx-background-color: #1e293b; -fx-background-radius: 12;">
+                    <BarChart fx:id="barChartTopLibros" prefHeight="360" prefWidth="600" style="-fx-background-color: #1D1D1D; -fx-background-radius: 12; -fx-border-color: #282828; -fx-border-radius: 12px;" stylesheets="@../../../../Style/style.css">
                         <xAxis>
-                            <CategoryAxis label="Libros" />
+                            <CategoryAxis label="Libros" style="-fx-background-color: #1D1D1D;" />
                         </xAxis>
                         <yAxis>
-                            <NumberAxis label="Préstamos" />
+                            <NumberAxis label="Préstamos" style="-fx-background-color: #1D1D1D;" stylesheets="@../../../../Style/style.css" />
                         </yAxis>
                     </BarChart>
                 </HBox>
-                <LineChart fx:id="lineChartPrestamos" prefHeight="380.0" prefWidth="964.0"
-                           style="-fx-background-color: #1e293b; -fx-background-radius: 12px;">
+                <LineChart fx:id="lineChartPrestamos" prefHeight="380.0" prefWidth="964.0" style="-fx-background-color: #1D1D1D; -fx-background-radius: 12px; -fx-border-color: #282828; -fx-border-radius: 12px;" stylesheets="@../../../../Style/style.css">
                     <xAxis>
-                        <CategoryAxis side="BOTTOM" label="Día" />
+                        <CategoryAxis label="Día" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                        <NumberAxis side="LEFT" label="Cantidad de Préstamos" />
+                        <NumberAxis label="Cantidad de Préstamos" side="LEFT" stylesheets="@../../../../Style/style.css" />
                     </yAxis>
                 </LineChart>
 

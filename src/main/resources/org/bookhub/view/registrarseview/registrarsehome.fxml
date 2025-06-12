@@ -12,82 +12,86 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1024.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bookhub.auth.RegistrarseController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1024.0" prefWidth="1440.0" style="-fx-padding: 16px; -fx-background-color: #151515;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bookhub.auth.RegistrarseController">
    <children>
+      <ImageView fitHeight="1032.0" fitWidth="737.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+         <image>
+            <Image url="@../../../../assets/icons/Login-image.png" />
+         </image>
+      </ImageView>
       <Pane prefHeight="1024.0" prefWidth="739.0" style="-fx-background-color: #151515;">
          <children>
-            <Label layoutX="227.0" layoutY="223.0" prefHeight="44.0" prefWidth="286.0" text="Crea tu cuenta." textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="200.0" layoutY="220.0" prefHeight="44.0" prefWidth="286.0" text="Crea tu cuenta." textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Inter 18pt SemiBold" size="36.0" />
                </font>
             </Label>
-            <Label layoutX="200.0" layoutY="326.0" text="Nombres" textFill="WHITE">
+            <Label layoutX="173.0" layoutY="323.0" text="Nombres" textFill="WHITE">
                <font>
                   <Font name="Inter 18pt Medium" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="200.0" layoutY="437.0" text="Apellidos" textFill="WHITE">
+            <Label layoutX="173.0" layoutY="434.0" text="Apellidos" textFill="WHITE">
                <font>
                   <Font name="Inter 18pt Medium" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="txtUsername1" layoutX="200.0" layoutY="360.0" prefHeight="40.0" prefWidth="340.0" promptText="Ingresa tu nombre" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 10px; -fx-padding: 0 0 0 45px; -fx-text-fill: white;">
+            <TextField fx:id="txtUsername1" layoutX="173.0" layoutY="357.0" prefHeight="40.0" prefWidth="340.0" promptText="Ingresa tu nombre" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 10px; -fx-padding: 0 0 0 45px; -fx-text-fill: white;">
                <font>
                   <Font name="Inter 18pt Medium" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtApellidos" layoutX="200.0" layoutY="469.0" prefHeight="40.0" prefWidth="340.0" promptText="Ingresa tus apellidos" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 10px; -fx-padding: 0 0 0 45px; -fx-text-fill: white;">
+            <TextField fx:id="txtApellidos" layoutX="173.0" layoutY="466.0" prefHeight="40.0" prefWidth="340.0" promptText="Ingresa tus apellidos" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 10px; -fx-padding: 0 0 0 45px; -fx-text-fill: white;">
                <font>
                   <Font name="Inter 18pt Medium" size="14.0" />
                </font>
             </TextField>
-            <Label layoutX="201.0" layoutY="542.0" text="Contraseña" textFill="WHITE">
+            <Label layoutX="174.0" layoutY="539.0" text="Contraseña" textFill="WHITE">
                <font>
                   <Font name="Inter 18pt Medium" size="16.0" />
                </font>
             </Label>
-            <PasswordField fx:id="txtPassword11" layoutX="200.0" layoutY="574.0" prefHeight="40.0" prefWidth="340.0" promptText="Ingresa tu contraseña" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 10px; -fx-padding: 0 0 0 45px; -fx-text-fill: white;">
+            <PasswordField fx:id="txtPassword11" layoutX="173.0" layoutY="571.0" prefHeight="40.0" prefWidth="340.0" promptText="Ingresa tu contraseña" style="-fx-background-color: transparent; -fx-border-color: #282828; -fx-border-radius: 10px; -fx-padding: 0 0 0 45px; -fx-text-fill: white;">
                <font>
                   <Font name="Inter 18pt Medium" size="14.0" />
                </font>
             </PasswordField>
-            <CheckBox layoutX="200.0" layoutY="629.0" style="-fx-background-color: transparent;" styleClass="asdasd" text="Mostrar contraseña" textAlignment="CENTER" textFill="WHITE">
+            <CheckBox layoutX="173.0" layoutY="626.0" style="-fx-background-color: transparent;" styleClass="asdasd" text="Mostrar contraseña" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Inter 18pt Medium" size="12.0" />
                </font>
             </CheckBox>
-            <Button fx:id="btnregister" layoutX="200.0" layoutY="692.0" onAction="#handleRegister" prefHeight="44.0" prefWidth="340.0" style="-fx-background-color: blue;" text="Crear cuenta" textFill="WHITE">
+            <Button fx:id="btnregister" layoutX="173.0" layoutY="689.0" onAction="#handleRegister" prefHeight="44.0" prefWidth="340.0" style="-fx-background-color: blue;" text="Crear cuenta" textFill="WHITE">
                <font>
                   <Font name="Inter 18pt Medium" size="16.0" />
                </font>
             </Button>
-            <Label layoutX="227.0" layoutY="777.0" text="¿Ya tienes una cuenta?" textFill="WHITE">
+            <Label layoutX="200.0" layoutY="774.0" text="¿Ya tienes una cuenta?" textFill="WHITE">
                <font>
                   <Font name="Inter 18pt Medium" size="16.0" />
                </font>
             </Label>
-            <Hyperlink fx:id="linkLogin" layoutX="402.0" layoutY="773.0" onAction="#volverAlLogin" text="Iniciar sesión" textFill="#0022ff">
+            <Hyperlink fx:id="linkLogin" layoutX="375.0" layoutY="770.0" onAction="#volverAlLogin" text="Iniciar sesión" textFill="#0022ff">
                <font>
                   <Font name="Inter 18pt Black" size="16.0" />
                </font>
             </Hyperlink>
-            <ImageView layoutX="213.0" layoutY="479.0">
+            <ImageView layoutX="186.0" layoutY="476.0">
                <image>
                   <Image url="@../../../../assets/icons/arroba.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="213.0" layoutY="584.0">
+            <ImageView layoutX="186.0" layoutY="581.0">
                <image>
                   <Image url="@../../../../assets/icons/icon-lock-open.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="213.0" layoutY="370.0">
+            <ImageView layoutX="186.0" layoutY="367.0">
                <image>
                   <Image url="@../../../../assets/icons/arroba.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1024.0" prefWidth="675.0" style="-fx-background-color: blue;" HBox.hgrow="ALWAYS" />
    </children>
 </HBox>

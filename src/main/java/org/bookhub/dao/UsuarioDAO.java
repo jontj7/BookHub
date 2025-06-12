@@ -36,7 +36,7 @@ public class UsuarioDAO {
     }
 
     public boolean guardar(Usuario usuario) {
-        String sql = "INSERT INTO Usuarios (Nombres, Apellidos, Usuario, Contraseña, IdRol, IdEstado) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Usuarios (Nombres, Apellidos, Usuario, Contraseña, IdRol) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -46,7 +46,6 @@ public class UsuarioDAO {
             stmt.setString(3, usuario.getUsuario());
             stmt.setString(4, usuario.getContrasena());
             stmt.setInt(5, usuario.getIdRol());
-            stmt.setInt(6, usuario.getIdEstado());
 
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -56,7 +55,7 @@ public class UsuarioDAO {
     }
 
     public boolean actualizar(Usuario usuario) {
-        String sql = "UPDATE Usuarios SET Nombres = ?, Apellidos = ?, Usuario = ?, Contraseña = ?, IdRol = ?, IdEstado = ? WHERE IdUsuario = ?";
+        String sql = "UPDATE Usuarios SET Nombres = ?, Apellidos = ?, Usuario = ?, IdRol = ?, IdEstado = ? WHERE IdUsuario = ?";
 
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -64,10 +63,9 @@ public class UsuarioDAO {
             stmt.setString(1, usuario.getNombres());
             stmt.setString(2, usuario.getApellidos());
             stmt.setString(3, usuario.getUsuario());
-            stmt.setString(4, usuario.getContrasena());
-            stmt.setInt(5, usuario.getIdRol());
-            stmt.setInt(6, usuario.getIdEstado());
-            stmt.setInt(7, usuario.getId());
+            stmt.setInt(4, usuario.getIdRol());
+            stmt.setInt(5, usuario.getIdEstado());
+            stmt.setInt(6, usuario.getId());
 
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -77,7 +75,7 @@ public class UsuarioDAO {
     }
 
     public boolean eliminar(int idUsuario) {
-        String sql = "DELETE FROM Usuarios WHERE IdUsuario = ?";
+        String sql = "UPDATE Usuarios SET IdEstado = 2 WHERE IdUsuario = ?";
 
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -92,7 +90,7 @@ public class UsuarioDAO {
 
     public List<Usuario> listarTodos() {
         List<Usuario> lista = new ArrayList<>();
-        String sql = "SELECT IdUsuario, Nombres, Apellidos, Usuario, IdRol, IdEstado FROM Usuarios";
+        String sql = "SELECT IdUsuario, Nombres, Apellidos, Usuario, IdRol, IdEstado FROM Usuarios WHERE IdEstado = 1";
 
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
