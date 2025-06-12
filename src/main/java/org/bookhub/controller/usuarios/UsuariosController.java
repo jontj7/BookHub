@@ -11,6 +11,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.bookhub.dao.UsuarioDAO;
 import org.bookhub.models.Usuario;
+import javafx.event.ActionEvent;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -18,11 +20,20 @@ import java.util.stream.Collectors;
 
 public class UsuariosController {
 
-    @FXML
-    private TextField labelingresarlibros; // nombre
+    private void mostrarAlerta(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Mensaje");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
 
     @FXML
-    private TextField labelingresarlibros1; // apellido
+    private TextField labelingresarlibros;
+
+    @FXML
+    private TextField labelingresarlibros1;
 
     @FXML
     private TableView<Usuario> tablaUsuarios;
@@ -79,7 +90,7 @@ public class UsuariosController {
     }
 
     @FXML
-    private void onNuevoUsuario(MouseEvent event) {
+    private void onNuevoUsuario(javafx.event.ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/bookhub/view/usuariosviews/usuarionew.fxml"));
             Parent root = loader.load();
@@ -87,6 +98,10 @@ public class UsuariosController {
             Stage stage = new Stage();
             stage.setTitle("Nuevo Usuario");
             stage.setScene(new Scene(root));
+
+            // 🔁 Escucha cuando se cierre la ventana para recargar la tabla
+            stage.setOnHiding(e -> cargarUsuarios());
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,58 +109,70 @@ public class UsuariosController {
         }
     }
 
+
+
     @FXML
-    private void onEditarUsuario(MouseEvent event) {
+    private void onEditarUsuario(javafx.event.ActionEvent event) {
         Usuario seleccionado = tablaUsuarios.getSelectionModel().getSelectedItem();
+
+        if (seleccionado == null) {
+            mostrarAlerta("⚠️ Por favor, selecciona un usuario para editar.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/bookhub/view/usuariosviews/usuarioedit.fxml"));
+            Parent root = loader.load();
+
+            // Accede al controlador y pasa el usuario seleccionado
+            UsuariosEditController controller = loader.getController();
+            controller.setUsuario(seleccionado);
+
+            // Crear nueva ventana de edición
+            Stage stage = new Stage();
+            stage.setTitle("Editar Usuario");
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.show();
+
+            // Recargar tabla al cerrar la ventana de edición
+            stage.setOnHiding(e -> cargarUsuarios());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("❌ Error al cargar la vista de edición del usuario.");
+        }
+    }
+
+
+    @FXML
+    private void onEliminarUsuario(ActionEvent event) {
+        Usuario seleccionado = tablaUsuarios.getSelectionModel().getSelectedItem();
+
         if (seleccionado != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/bookhub/view/usuariosviews/usuarioedit.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/bookhub/view/usuariosviews/usuariodelete.fxml"));
                 Parent root = loader.load();
 
-                UsuariosEditController controller = loader.getController();
+                UsuarioDeleteController controller = loader.getController();
                 controller.setUsuario(seleccionado);
 
                 Stage stage = new Stage();
-                stage.setTitle("Editar Usuario");
+                stage.setTitle("Eliminar Usuario");
                 stage.setScene(new Scene(root));
+                stage.setResizable(false);
                 stage.show();
+
+                // Opcional: recargar tabla al cerrar
+                stage.setOnHiding(e -> cargarUsuarios());
+
             } catch (IOException e) {
                 e.printStackTrace();
-                mostrarAlerta("❌ No se pudo abrir el formulario de edición.");
+                mostrarAlerta("❌ Error al abrir la ventana de confirmación.");
             }
         } else {
-            mostrarAlerta("Selecciona un usuario para editar.");
+            mostrarAlerta("⚠️ Selecciona un usuario para eliminar.");
         }
     }
 
-    @FXML
-    private void onEliminarUsuario(MouseEvent event) {
-        Usuario seleccionado = tablaUsuarios.getSelectionModel().getSelectedItem();
-        if (seleccionado != null) {
-            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmacion.setTitle("Confirmar eliminación");
-            confirmacion.setHeaderText("¿Estás seguro de eliminar este usuario?");
-            confirmacion.setContentText("Usuario: " + seleccionado.getUsuario());
-
-            confirmacion.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    if (usuarioDAO.eliminar(seleccionado.getId())) {
-                        listaObservable.remove(seleccionado);
-                        mostrarAlerta("Usuario eliminado correctamente.");
-                    } else {
-                        mostrarAlerta("Error al eliminar usuario.");
-                    }
-                }
-            });
-        } else {
-            mostrarAlerta("Selecciona un usuario para eliminar.");
-        }
-    }
-
-    private void mostrarAlerta(String mensaje) {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setContentText(mensaje);
-        alerta.setHeaderText(null);
-        alerta.showAndWait();
-    }
 }

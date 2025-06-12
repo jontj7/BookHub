@@ -12,12 +12,11 @@ public class UsuariosNewController {
     @FXML private TextField txtNombres;
     @FXML private TextField txtApellidos;
     @FXML private TextField txtContrasena;
-    @FXML private TextField txtUsuario;
 
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     @FXML
-    public void onGuardar() {
+    public void onGuardar(javafx.event.ActionEvent event) {
         String nombres = txtNombres.getText().trim();
         String apellidos = txtApellidos.getText().trim();
         String contrasena = txtContrasena.getText().trim();
@@ -38,8 +37,8 @@ public class UsuariosNewController {
         nuevo.setApellidos(apellidos);
         nuevo.setContrasena(contrasena);
         nuevo.setUsuario(usuarioGenerado);
-        nuevo.setIdRol(2);     // Rol de usuario normal
-        nuevo.setIdEstado(1);  // Estado activo
+        nuevo.setIdRol(2);
+        nuevo.setIdEstado(1);
 
         boolean guardado = usuarioDAO.guardar(nuevo);
         if (guardado) {
