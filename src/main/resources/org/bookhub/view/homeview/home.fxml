@@ -3,13 +3,13 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -17,123 +17,94 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #151515;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bookhub.controller.home.HomeController">
+<BorderPane prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: #151515;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bookhub.controller.home.HomeController">
 
     <!-- SIDEBAR -->
     <left>
         <VBox prefWidth="219.0" spacing="32.0" style="-fx-padding: 20; -fx-background-color: #151515; -fx-border-color: #282828;">
-            <Label style="-fx-font-size: 24;" text="📘 Bookhub" textFill="white" />
-         <VBox prefHeight="200.0" prefWidth="100.0" spacing="16.0" VBox.vgrow="ALWAYS">
-            <children>
-               <Pane prefHeight="429.0" prefWidth="177.0">
-                  <children>
+            <Label fx:id="labelGraficas" onMouseClicked="#irAInicio" style="-fx-font-size: 24; -fx-cursor: hand;" text="📘 Bookhub" textFill="white" />
+            <VBox spacing="16.0" VBox.vgrow="ALWAYS">
+                <Pane>
+                    <children>
                         <Label layoutY="14.0" text="Menú de gestión" textFill="WHITE">
-                        <font>
-                           <Font name="Inter 18pt Medium" size="14.0" />
-                        </font>
-                     </Label>
-            
-                        <Button alignment="BASELINE_LEFT" layoutX="-2.0" layoutY="49.0" onAction="#mostrarLibros" prefHeight="40.0" prefWidth="177.0" style="-fx-background-color: #1D1D1D; -fx-text-fill: white; -fx-padding: 0 0 0 45px; -fx-background-radius: 10px;" text="Libros">
-                        <font>
-                           <Font name="Inter 24pt Medium" size="14.0" />
-                        </font>
-                        <cursor>
-                           <Cursor fx:constant="HAND" />
-                        </cursor>
-                     </Button>
-                        <Button fx:id="btnPrestamos" alignment="BASELINE_LEFT" layoutX="-2.0" layoutY="98.0" onAction="#mostrarPrestamos" prefHeight="40.0" prefWidth="178.0" style="-fx-background-color: #1D1D1D; -fx-text-fill: white; -fx-padding: 0 0 0 45px; -fx-background-radius: 10px;" text="Préstamos">
-                        <font>
-                           <Font name="Inter 24pt Medium" size="14.0" />
-                        </font>
-                        <cursor>
-                           <Cursor fx:constant="HAND" />
-                        </cursor>
-                     </Button>
-                        <Button fx:id="BtnAutores" alignment="BASELINE_LEFT" layoutX="-2.0" layoutY="147.0" onAction="#mostrarAutores" prefHeight="40.0" prefWidth="178.0" style="-fx-background-color: #1D1D1D; -fx-text-fill: white; -fx-padding: 0 0 0 45px; -fx-background-radius: 10px;" text="Autores">
-                        <font>
-                           <Font name="Inter 24pt Medium" size="14.0" />
-                        </font>
-                        <cursor>
-                           <Cursor fx:constant="HAND" />
-                        </cursor>
-                     </Button>
-                        <Button fx:id="BtnUsuarios" alignment="BASELINE_LEFT" contentDisplay="BOTTOM" layoutX="-2.0" layoutY="197.0" onAction="#mostrarUsuarios" prefHeight="40.0" prefWidth="176.0" style="-fx-background-color: #1D1D1D; -fx-text-fill: white; -fx-padding: 0 0 0 45px; -fx-background-radius: 10px;" text="Usuarios">
-                        <font>
-                           <Font name="Inter 24pt Medium" size="14.0" />
-                        </font>
-                        <cursor>
-                           <Cursor fx:constant="HAND" />
-                        </cursor>
-                     </Button>
-                     <ImageView fitHeight="21.0" fitWidth="20.0" layoutX="10.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../assets/icons/icon-book-2.png" />
-                        </image>
-                     </ImageView>
-                     <ImageView fitHeight="22.0" fitWidth="19.0" layoutX="11.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../assets/icons/icon-transform.png" />
-                        </image>
-                     </ImageView>
-                     <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="10.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../assets/icons/icon-edit-circle.png" />
-                        </image>
-                     </ImageView>
-                     <ImageView fitHeight="21.0" fitWidth="55.0" layoutX="10.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../assets/icons/icon-user-circle.png" />
-                        </image>
-                     </ImageView>
-                  </children>
-               </Pane>
-            </children>
-         </VBox>
-         <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
-            <children>
-               <Pane prefHeight="200.0" prefWidth="200.0">
-                  <children>
-                        <Button layoutY="158.0" onAction="#logout" prefHeight="42.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: transparent;" text="Cerrar sesión">
-                        <font>
-                           <Font name="Inter 24pt Medium" size="14.0" />
-                        </font>
-                     </Button>
-                     <ImageView fitHeight="21.0" fitWidth="55.0" layoutX="14.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../../../../assets/icons/icon-arrow-narrow-left.png" />
-                        </image>
-                     </ImageView>
-                  </children>
-               </Pane>
-            </children>
-         </VBox>
+                            <font><Font name="Inter 18pt Medium" size="14.0" /></font>
+                        </Label>
+
+                        <Button layoutX="-2.0" layoutY="49.0" onAction="#mostrarLibros" prefHeight="40.0" prefWidth="177.0" style="-fx-background-color: #1D1D1D; -fx-text-fill: white; -fx-padding: 0 0 0 45px; -fx-background-radius: 10px;" text="Libros">
+                            <font><Font name="Inter 24pt Medium" size="14.0" /></font>
+                            <cursor><Cursor fx:constant="HAND" /></cursor>
+                        </Button>
+
+                        <Button layoutX="-2.0" layoutY="98.0" onAction="#mostrarPrestamos" prefHeight="40.0" prefWidth="178.0" style="-fx-background-color: #1D1D1D; -fx-text-fill: white; -fx-padding: 0 0 0 45px; -fx-background-radius: 10px;" text="Préstamos">
+                            <font><Font name="Inter 24pt Medium" size="14.0" /></font>
+                            <cursor><Cursor fx:constant="HAND" /></cursor>
+                        </Button>
+
+                        <Button layoutX="-2.0" layoutY="147.0" onAction="#mostrarAutores" prefHeight="40.0" prefWidth="178.0" style="-fx-background-color: #1D1D1D; -fx-text-fill: white; -fx-padding: 0 0 0 45px; -fx-background-radius: 10px;" text="Autores">
+                            <font><Font name="Inter 24pt Medium" size="14.0" /></font>
+                            <cursor><Cursor fx:constant="HAND" /></cursor>
+                        </Button>
+
+                        <Button layoutX="-2.0" layoutY="197.0" onAction="#mostrarUsuarios" prefHeight="40.0" prefWidth="176.0" style="-fx-background-color: #1D1D1D; -fx-text-fill: white; -fx-padding: 0 0 0 45px; -fx-background-radius: 10px;" text="Usuarios">
+                            <font><Font name="Inter 24pt Medium" size="14.0" /></font>
+                            <cursor><Cursor fx:constant="HAND" /></cursor>
+                        </Button>
+
+                        <!-- Iconos -->
+                        <ImageView fitHeight="21.0" fitWidth="20.0" layoutX="10.0" layoutY="59.0" preserveRatio="true">
+                            <image><Image url="@../../../../assets/icons/icon-book-2.png" /></image>
+                        </ImageView>
+                        <ImageView fitHeight="22.0" fitWidth="19.0" layoutX="11.0" layoutY="109.0" preserveRatio="true">
+                            <image><Image url="@../../../../assets/icons/icon-transform.png" /></image>
+                        </ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="10.0" layoutY="157.0" preserveRatio="true">
+                            <image><Image url="@../../../../assets/icons/icon-edit-circle.png" /></image>
+                        </ImageView>
+                        <ImageView fitHeight="21.0" fitWidth="55.0" layoutX="10.0" layoutY="207.0" preserveRatio="true">
+                            <image><Image url="@../../../../assets/icons/icon-user-circle.png" /></image>
+                        </ImageView>
+                    </children>
+                </Pane>
+            </VBox>
+
+            <VBox alignment="BOTTOM_LEFT" VBox.vgrow="ALWAYS">
+                <Pane>
+                    <Button layoutY="158.0" onAction="#logout" prefHeight="42.0" prefWidth="190.0" style="-fx-text-fill: white; -fx-background-color: transparent;" text="Cerrar sesión">
+                        <font><Font name="Inter 24pt Medium" size="14.0" /></font>
+                    </Button>
+                    <ImageView fitHeight="21.0" fitWidth="55.0" layoutX="14.0" layoutY="169.0" preserveRatio="true">
+                        <image><Image url="@../../../../assets/icons/icon-arrow-narrow-left.png" /></image>
+                    </ImageView>
+                </Pane>
+            </VBox>
         </VBox>
     </left>
 
-    <!-- CONTENIDO DINÁMICO -->
+    <!-- CONTENIDO -->
     <center>
-        <StackPane fx:id="contenidoVista">
-            <VBox fillWidth="false" style="-fx-padding: 16px;" StackPane.alignment="CENTER">
-                <HBox prefWidth="1221.0" spacing="20">
-                    <VBox alignment="CENTER" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 8;">
-                        <Label text="📚 Total Libros" textFill="white" />
-                        <Label fx:id="labelTotalLibros" style="-fx-font-size: 22; -fx-text-fill: #38bdf8;" text="-" />
+        <StackPane fx:id="contenidoVista" style="-fx-padding: 16px;">
+            <VBox spacing="32" style="-fx-padding: 32; -fx-background-color: #151515;">
+                <HBox fx:id="LineChart" spacing="24">
+                    <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 6, 0, 0, 3);">
+                        <Label style="-fx-font-size: 14;" text="📚 Total Libros" textFill="white" />
+                        <Label fx:id="labelTotalLibros" style="-fx-font-size: 28; -fx-text-fill: #38bdf8; -fx-font-weight: bold;" text="-" />
                     </VBox>
 
-                    <VBox alignment="CENTER" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 8;">
-                        <Label text="🔁 Préstamos Pendientes" textFill="white" />
-                        <Label fx:id="labelPrestamosPendientes" style="-fx-font-size: 22; -fx-text-fill: #f43f5e;" text="-" />
+                    <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 6, 0, 0, 3);">
+                        <Label style="-fx-font-size: 14;" text="🔁 Préstamos Pendientes" textFill="white" />
+                        <Label fx:id="labelPrestamosPendientes" style="-fx-font-size: 28; -fx-text-fill: #f43f5e; -fx-font-weight: bold;" text="-" />
                     </VBox>
 
-                    <VBox alignment="CENTER" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 8;">
-                        <Label text="✅ Préstamos Devueltos" textFill="white" />
-                        <Label fx:id="labelPrestamosDevueltos" style="-fx-font-size: 22; -fx-text-fill: #22c55e;" text="-" />
+                    <VBox alignment="CENTER" spacing="8" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 6, 0, 0, 3);">
+                        <Label style="-fx-font-size: 14;" text="✅ Préstamos Devueltos" textFill="white" />
+                        <Label fx:id="labelPrestamosDevueltos" style="-fx-font-size: 28; -fx-text-fill: #22c55e; -fx-font-weight: bold;" text="-" />
                     </VBox>
                 </HBox>
 
-                <HBox spacing="30">
-                    <PieChart fx:id="pieChartCategoria" prefHeight="300" prefWidth="382.0" />
-                    <BarChart fx:id="barChartTopLibros" prefHeight="300" prefWidth="500">
+                <HBox spacing="32">
+                    <PieChart fx:id="pieChartCategoria" prefHeight="360" prefWidth="440" style="-fx-background-color: #1e293b; -fx-background-radius: 12;" />
+
+                    <BarChart fx:id="barChartTopLibros" prefHeight="360" prefWidth="600" style="-fx-background-color: #1e293b; -fx-background-radius: 12;">
                         <xAxis>
                             <CategoryAxis label="Libros" />
                         </xAxis>
@@ -142,7 +113,16 @@
                         </yAxis>
                     </BarChart>
                 </HBox>
-            <AnchorPane />
+                <LineChart fx:id="lineChartPrestamos" prefHeight="380.0" prefWidth="964.0"
+                           style="-fx-background-color: #1e293b; -fx-background-radius: 12px;">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" label="Día" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" label="Cantidad de Préstamos" />
+                    </yAxis>
+                </LineChart>
+
             </VBox>
         </StackPane>
     </center>

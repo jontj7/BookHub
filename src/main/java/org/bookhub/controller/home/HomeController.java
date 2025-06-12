@@ -19,12 +19,76 @@ public class HomeController {
 
     @FXML private PieChart pieChartCategoria;
     @FXML private BarChart<String, Number> barChartTopLibros;
+    @FXML private LineChart<String, Number> lineChartPrestamos;
+
     @FXML private Label labelTotalLibros;
     @FXML private Label labelPrestamosPendientes;
     @FXML private Label labelPrestamosDevueltos;
 
+    @FXML private Label labelDashboard;
+
     private final LibroDAO libroDAO = new LibroDAO();
 
+    @FXML
+    private void initialize() {
+        if (labelDashboard != null) {
+            labelDashboard.setOnMouseClicked(event -> mostrarLibros());
+            labelDashboard.setStyle("-fx-cursor: hand;");
+        }
+
+        cargarGraficas();
+    }
+
+    private void cargarGraficas() {
+        // === PieChart: Categorías ===
+        if (pieChartCategoria != null) {
+            pieChartCategoria.getData().clear();
+            Map<String, Integer> categorias = libroDAO.obtenerDistribucionPorCategoria();
+            categorias.forEach((nombre, cantidad) ->
+                    pieChartCategoria.getData().add(new PieChart.Data(nombre, cantidad))
+            );
+
+            // Total de libros
+            int totalLibros = categorias.values().stream().mapToInt(Integer::intValue).sum();
+            labelTotalLibros.setText(String.valueOf(totalLibros));
+        }
+
+        // === BarChart: Top libros ===
+        if (barChartTopLibros != null) {
+            barChartTopLibros.getData().clear();
+            XYChart.Series<String, Number> serie = new XYChart.Series<>();
+            serie.setName("Top Libros");
+
+            Map<String, Integer> topLibros = libroDAO.obtenerTopLibrosMasPrestados();
+            topLibros.forEach((libro, prestamos) ->
+                    serie.getData().add(new XYChart.Data<>(libro, prestamos))
+            );
+            barChartTopLibros.getData().add(serie);
+        }
+
+        // === LineChart: Préstamos por día ===
+        if (lineChartPrestamos != null) {
+            lineChartPrestamos.getData().clear();
+            XYChart.Series<String, Number> serie = new XYChart.Series<>();
+            serie.setName("Préstamos por día");
+
+            Map<String, Integer> prestamosPorDia = libroDAO.obtenerPrestamosPorDia();
+            prestamosPorDia.forEach((dia, cantidad) ->
+                    serie.getData().add(new XYChart.Data<>(dia, cantidad))
+            );
+            lineChartPrestamos.getData().add(serie);
+        }
+
+        // === KPIs de préstamos (Permitido / Retrasado) ===
+        Map<String, Integer> estados = libroDAO.obtenerConteoPrestamosPorEstado();
+        labelPrestamosPendientes.setText(String.valueOf(estados.getOrDefault("Retrasado", 0)));
+        labelPrestamosDevueltos.setText(String.valueOf(estados.getOrDefault("Permitido", 0)));
+    }
+
+    // === Navegación ===
+    @FXML private void irAInicio() {
+        cargarVista("/org/bookhub/view/Graficas/Graficas.fxml");
+    }
 
     @FXML private void mostrarLibros() {
         cargarVista("/org/bookhub/view/dashboard.fxml");
@@ -61,38 +125,5 @@ public class HomeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-
-    @FXML
-    private void initialize() {
-        if (pieChartCategoria != null && barChartTopLibros != null) {
-            cargarGraficas();
-        }
-    }
-
-    private void cargarGraficas() {
-        // Gráfico de pastel por categoría
-        pieChartCategoria.getData().clear();
-        Map<String, Integer> categorias = libroDAO.obtenerDistribucionPorCategoria();
-        categorias.forEach((nombre, cantidad) ->
-                pieChartCategoria.getData().add(new PieChart.Data(nombre, cantidad))
-        );
-
-        // Gráfico de barras - top libros más prestados
-        barChartTopLibros.getData().clear();
-        XYChart.Series<String, Number> serie = new XYChart.Series<>();
-        serie.setName("Top Libros");
-
-        Map<String, Integer> topLibros = libroDAO.obtenerTopLibrosMasPrestados();
-        topLibros.forEach((libro, prestamos) ->
-                serie.getData().add(new XYChart.Data<>(libro, prestamos))
-        );
-        barChartTopLibros.getData().add(serie);
-
-        // KPIs
-        labelTotalLibros.setText(String.valueOf(categorias.values().stream().mapToInt(Integer::intValue).sum()));
-        labelPrestamosPendientes.setText("33"); // Puedes enlazar con DAO real
-        labelPrestamosDevueltos.setText("45");  // Puedes enlazar con DAO real
     }
 }
