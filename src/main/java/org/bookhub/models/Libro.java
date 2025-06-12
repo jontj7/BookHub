@@ -12,6 +12,10 @@ public class Libro {
     private final IntegerProperty stock = new SimpleIntegerProperty();
     private final StringProperty imagen = new SimpleStringProperty();
 
+    // Constructor vacío (necesario para instanciar Libro sin argumentos)
+    public Libro() {
+    }
+
     // ID Libro
     public int getIdLibro() { return idLibro.get(); }
     public void setIdLibro(int value) { idLibro.set(value); }
