@@ -6,9 +6,10 @@ import java.sql.SQLException;
 
 public class ConnectionManager {
 
-    private static final String URL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=BookHub;encrypt=true;trustServerCertificate=true";
-    private static final String USER = "sa";
-    private static final String PASSWORD = "123456";
+    private static final String URL = "jdbc:sqlserver://BookHub.mssql.somee.com;databaseName=BookHub;encrypt=true;trustServerCertificate=true;";
+    private static final String USER = "erickcaceres17_SQLLogin_3";
+    private static final String PASSWORD = "3wgmei85xa";
+
 
     public static Connection getConnection() {
         try {

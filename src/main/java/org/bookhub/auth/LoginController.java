@@ -63,7 +63,6 @@ public class LoginController {
             UsuarioSesion.idUsuario = usuarioObj.getId();
             UsuarioSesion.nombres = usuarioObj.getNombres();
             UsuarioSesion.apellidos = usuarioObj.getApellidos();
-            UsuarioSesion.idRol = usuarioObj.getIdRol();
 
             cargarDashboard();
         } else {

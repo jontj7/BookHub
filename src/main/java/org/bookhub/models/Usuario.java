@@ -9,7 +9,6 @@ public class Usuario {
     private String contrasena;
     private String usuario;
 
-
     // Getters y setters
     public int getId() {
         return id;
@@ -67,4 +66,8 @@ public class Usuario {
         this.usuario = usuario;
     }
 
+    @Override
+    public String toString() {
+        return getNombres();
+    }
 }

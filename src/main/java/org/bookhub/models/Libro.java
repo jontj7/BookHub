@@ -55,4 +55,9 @@ public class Libro {
     public String getImagen() { return imagen.get(); }
     public void setImagen(String value) { imagen.set(value); }
     public StringProperty imagenProperty() { return imagen; }
+
+    @Override
+    public String toString() {
+        return getNombre();
+    }
 }
