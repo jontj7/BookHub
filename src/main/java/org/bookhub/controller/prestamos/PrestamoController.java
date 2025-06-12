@@ -37,6 +37,7 @@ public class PrestamoController {
 
     @FXML
     private TableView<Prestamo> tablaPrestamos;
+    private ObservableList<Prestamo> listaPrestamos = FXCollections.observableArrayList();
 
     @FXML
     private TableColumn<Prestamo, Integer> colIdPrestamo;
@@ -62,7 +63,24 @@ public class PrestamoController {
     @FXML
     private TableColumn<Prestamo, Integer> colIdEstado;
 
+    @FXML
     private PrestamoService prestamoService = new PrestamoService();
+
+
+
+    @FXML
+    private void buscarPrestamosPorFechas() {
+        LocalDate inicio = dpFechaInicio.getValue();
+        LocalDate fin = dpFechaFin.getValue();
+
+        if (inicio != null && fin != null && !inicio.isAfter(fin)) {
+            List<Prestamo> resultados = PrestamoDAO.buscarPorFechas(inicio, fin);
+            listaPrestamos.setAll(resultados);
+            tablaPrestamos.setItems(listaPrestamos);
+        } else {
+            mostrarError("Fechas inválidas", "Asegúrate de que ambas fechas estén seleccionadas y que la fecha de inicio no sea después de la final.");
+        }
+    }
 
     @FXML
     public void initialize() {
